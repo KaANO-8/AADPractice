@@ -8,6 +8,11 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
+    <string name="menu_add_note">Add note</string>
     <string name="menu_slideshow">Slideshow</string>
+    
+    <string name="recipient_label_text">To</string>
+    <string name="sender_label_text">From</string>
+    <string name="note_label_text">Note</string>
+    <string name="add_note_submit_button_text">Submit note</string>
 </resources>
