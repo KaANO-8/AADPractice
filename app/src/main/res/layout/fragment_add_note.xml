@@ -1,63 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.gallery.AddNoteFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/recipientTextField"
-        style="@style/InputFields"
+    <data>
+        <variable
+            name="addNoteViewModel"
+            type="com.kaano8.androidsamples.ui.gallery.AddNoteViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:hint="@string/recipient_label_text"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        tools:context=".ui.gallery.AddNoteFragment">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/recipientEditText"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/recipientTextField"
+            style="@style/InputFields"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:hint="@string/recipient_label_text"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/recipientEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/senderTextField"
-        style="@style/InputFields"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/sender_label_text"
-        app:layout_constraintTop_toBottomOf="@+id/recipientTextField">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/senderEditText"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/senderTextField"
+            style="@style/InputFields"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"
+            android:hint="@string/sender_label_text"
+            app:layout_constraintTop_toBottomOf="@+id/recipientTextField">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/noteInputField"
-        style="@style/InputFields"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/note_label_text"
-        app:layout_constraintTop_toBottomOf="@+id/senderTextField">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/senderEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/noteEditText"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/noteInputField"
+            style="@style/InputFields"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"
+            android:hint="@string/note_label_text"
+            app:layout_constraintTop_toBottomOf="@+id/senderTextField">
 
-    <Button
-        android:id="@+id/submitButton"
-        style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add_note_submit_button_text"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/noteInputField" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/noteEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/submitButton"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/add_note_submit_button_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noteInputField" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
