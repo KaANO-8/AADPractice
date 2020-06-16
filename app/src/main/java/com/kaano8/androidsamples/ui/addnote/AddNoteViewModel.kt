@@ -3,11 +3,12 @@ package com.kaano8.androidsamples.ui.addnote
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import com.kaano8.androidsamples.database.Note
+import com.kaano8.androidsamples.database.NoteDatabase
+import com.kaano8.androidsamples.database.NoteDatabaseDao
+import kotlinx.coroutines.*
 
-class AddNoteViewModel : ViewModel() {
+class AddNoteViewModel(private val noteDatabase: NoteDatabaseDao) : ViewModel() {
 
     private val _blankNoteError = MutableLiveData<Boolean>()
 
@@ -24,10 +25,19 @@ class AddNoteViewModel : ViewModel() {
     }
 
 
-    fun submitNote(recipient: String?, sender: String?, note: String?) {
-        if (note?.isBlank() == true) {
+    fun submitNote(recipient: String, sender: String, note: String) {
+        if (note.isBlank()) {
             _blankNoteError.value = true
         }
 
+        uiScope.launch {
+            withContext(Dispatchers.IO) {
+                noteDatabase.insert(Note(
+                    recipientName = recipient,
+                    senderName = sender,
+                    note = note
+                ))
+            }
+        }
     }
 }
