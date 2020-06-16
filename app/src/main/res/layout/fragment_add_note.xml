@@ -7,12 +7,12 @@
     <data>
         <variable
             name="addNoteViewModel"
-            type="com.kaano8.androidsamples.ui.gallery.AddNoteViewModel" />
+            type="com.kaano8.androidsamples.ui.addnote.AddNoteViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.gallery.AddNoteFragment">
+        tools:context=".ui.addnote.AddNoteFragment">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/recipientTextField"

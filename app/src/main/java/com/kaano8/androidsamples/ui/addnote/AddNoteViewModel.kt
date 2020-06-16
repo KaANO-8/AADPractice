@@ -1,4 +1,4 @@
-package com.kaano8.androidsamples.ui.gallery
+package com.kaano8.androidsamples.ui.addnote
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
