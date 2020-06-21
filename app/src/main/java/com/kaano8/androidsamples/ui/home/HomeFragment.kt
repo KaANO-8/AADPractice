@@ -1,14 +1,12 @@
 package com.kaano8.androidsamples.ui.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import com.kaano8.androidsamples.R
 import com.kaano8.androidsamples.database.NoteDatabase
 import com.kaano8.androidsamples.repository.NoteRepository
@@ -16,6 +14,11 @@ import com.kaano8.androidsamples.repository.NoteRepository
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,11 +38,34 @@ class HomeFragment : Fragment() {
 
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.notes.observe(viewLifecycleOwner, Observer {
-            it.forEach {
-                textView.text = "${textView.text} \n ${it.note}"
-            }
-        })
+
+        with(homeViewModel) {
+            notesString.observe(viewLifecycleOwner, Observer {
+                textView.text = it
+            })
+
+            clearDatabaseSnackBarEvent.observe(viewLifecycleOwner, Observer { didEventOccur ->
+                if (didEventOccur) {
+                    Snackbar.make(requireActivity().findViewById(android.R.id.content), getString(R.string.cleared_message), Snackbar.LENGTH_SHORT).show()
+                    doneShowingSnackbar()
+                }
+            })
+        }
+
         return root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_clear_database -> {
+                homeViewModel.clearDatabase()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

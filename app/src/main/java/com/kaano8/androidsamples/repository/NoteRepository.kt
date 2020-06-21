@@ -13,4 +13,8 @@ class NoteRepository(private val noteDatabaseDao: NoteDatabaseDao) {
     suspend fun insert(note: Note) {
         noteDatabaseDao.insert(note)
     }
+
+    suspend fun clear() {
+        noteDatabaseDao.clear()
+    }
 }
