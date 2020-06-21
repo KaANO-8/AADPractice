@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(private val noteRepository: NoteRepository) : ViewModel() {
 
-    val notes: LiveData<List<Note>> = noteRepository.notes
+    private val notes: LiveData<List<Note>> = noteRepository.notes
 
     val notesString: LiveData<String> = Transformations.map(notes) {
         var string = ""
