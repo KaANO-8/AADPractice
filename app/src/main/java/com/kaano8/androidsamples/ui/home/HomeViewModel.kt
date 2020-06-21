@@ -1,13 +1,18 @@
 package com.kaano8.androidsamples.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.kaano8.androidsamples.database.Note
+import com.kaano8.androidsamples.database.NoteDatabaseDao
+import com.kaano8.androidsamples.repository.NoteRepository
+import kotlinx.coroutines.*
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(private val noteRepository: NoteRepository) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    val notes: LiveData<List<Note>> = noteRepository.notes
+
+    fun insertNote(note: Note) {
+        viewModelScope.launch(Dispatchers.IO) {
+            noteRepository.insert(note)
+        }
     }
-    val text: LiveData<String> = _text
 }

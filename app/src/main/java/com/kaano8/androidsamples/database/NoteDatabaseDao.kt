@@ -1,16 +1,13 @@
 package com.kaano8.androidsamples.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface NoteDatabaseDao {
 
-    @Insert
-    fun insert(note: Note)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(note: Note): Long
 
     @Update
     fun update(note: Note)

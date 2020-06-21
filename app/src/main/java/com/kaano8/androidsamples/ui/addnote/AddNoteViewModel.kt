@@ -3,41 +3,44 @@ package com.kaano8.androidsamples.ui.addnote
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.kaano8.androidsamples.database.Note
-import com.kaano8.androidsamples.database.NoteDatabase
-import com.kaano8.androidsamples.database.NoteDatabaseDao
+import com.kaano8.androidsamples.repository.NoteRepository
 import kotlinx.coroutines.*
 
-class AddNoteViewModel(private val noteDatabase: NoteDatabaseDao) : ViewModel() {
+class AddNoteViewModel(private val noteRepository: NoteRepository) : ViewModel() {
 
-    private val _blankNoteError = MutableLiveData<Boolean>()
+    private val _blankFieldError = MutableLiveData<Boolean>()
 
-    val blackNoteError: LiveData<Boolean>
-        get() = _blankNoteError
+    val blankFieldError: LiveData<Boolean>
+        get() = _blankFieldError
 
-    private val job = Job()
+    private val _insertionSuccess = MutableLiveData<Boolean>()
 
-    private val uiScope = CoroutineScope(Dispatchers.Main + job)
+    val insertionSuccess: LiveData<Boolean>
+        get() = _insertionSuccess
 
-    override fun onCleared() {
-        super.onCleared()
-        job.cancel()
-    }
+    private val _navigateToHome = MutableLiveData<Boolean?>()
+
+    val navigateToHome: LiveData<Boolean?>
+        get() = _navigateToHome
 
 
-    fun submitNote(recipient: String, sender: String, note: String) {
-        if (note.isBlank()) {
-            _blankNoteError.value = true
+    fun insertNewNote(recipient: String, sender: String, note: String) {
+        if (recipient.isBlank() || sender.isBlank() || note.isBlank()) {
+            _blankFieldError.value = true
+            return
         }
 
-        uiScope.launch {
-            withContext(Dispatchers.IO) {
-                noteDatabase.insert(Note(
-                    recipientName = recipient,
-                    senderName = sender,
-                    note = note
-                ))
-            }
+        viewModelScope.launch(Dispatchers.IO) {
+            noteRepository.insert(Note(recipientName = recipient, senderName = sender, note = note))
         }
+        _insertionSuccess.value = true
+        _navigateToHome.value = true
     }
+
+    fun doneNavigateToHome() {
+        _navigateToHome.value = null
+    }
+
 }
