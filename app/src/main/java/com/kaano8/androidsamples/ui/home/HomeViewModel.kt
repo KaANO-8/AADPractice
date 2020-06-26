@@ -8,15 +8,8 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(private val noteRepository: NoteRepository) : ViewModel() {
 
-    private val notes: LiveData<List<Note>> = noteRepository.notes
+    val notes: LiveData<List<Note>> = noteRepository.notes
 
-    val notesString: LiveData<String> = Transformations.map(notes) {
-        var string = ""
-        it.forEach {
-            string = "$string \n $it"
-        }
-        string
-    }
 
     private val _clearDatabaseSnackBarEvent = MutableLiveData<Boolean>()
 
