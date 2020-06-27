@@ -23,17 +23,7 @@ class AddNoteFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        val application = requireNotNull(this.activity).application
-
-        val dataSource = NoteDatabase.getInstance(application).noteDatabaseDao
-
-        val noteRepository = NoteRepository(dataSource)
-
-        val viewModelFactory = AddNoteViewModelFactory(noteRepository)
-
-        addNoteViewModel =
-            ViewModelProvider(this, viewModelFactory).get(AddNoteViewModel::class.java)
+        setupViewModel()
         val root = inflater.inflate(R.layout.fragment_add_note, container, false)
         return root
     }
@@ -52,22 +42,33 @@ class AddNoteFragment : Fragment() {
         with(addNoteViewModel) {
             blankFieldError.observe(viewLifecycleOwner, Observer { error ->
                 if (error)
-                    Snackbar.make(view, "Error: Some fields are left blank", Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(view, "Error: Some fields are left blank", Snackbar.LENGTH_LONG)
+                        .show()
             })
 
             insertionSuccess.observe(viewLifecycleOwner, Observer { success ->
                 if (success)
-                    Snackbar.make(view, "Success: Note saved successfully", Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(view, "Success: Note saved successfully", Snackbar.LENGTH_LONG)
+                        .show()
             })
 
-            navigateToHome.observe(viewLifecycleOwner, Observer {navigate ->
+            navigateToHome.observe(viewLifecycleOwner, Observer { navigate ->
                 if (navigate == true) {
-                    this@AddNoteFragment.findNavController().navigate(AddNoteFragmentDirections.actionNavAddNoteToNavHome())
+                    this@AddNoteFragment.findNavController()
+                        .navigate(AddNoteFragmentDirections.actionNavAddNoteToNavHome())
                     doneNavigateToHome()
                 }
             })
         }
+    }
 
+    private fun setupViewModel() {
+        val application = requireNotNull(this.activity).application
+        val dataSource = NoteDatabase.getInstance(application).noteDatabaseDao
+        val noteRepository = NoteRepository(dataSource)
+        val viewModelFactory = AddNoteViewModelFactory(noteRepository)
+        addNoteViewModel =
+            ViewModelProvider(this, viewModelFactory).get(AddNoteViewModel::class.java)
     }
 
     companion object {

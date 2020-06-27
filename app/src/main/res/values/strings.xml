@@ -18,4 +18,6 @@
     <string name="cleared_message">All your data is gone forever.</string>
     <string name="recipient_text_format">To: %1$s</string>
     <string name="sender_text_format">From: %1$s</string>
+    <string name="edit_action_text">Edit</string>
+    <string name="delete_action_text">Delete</string>
 </resources>

@@ -8,4 +8,5 @@
     <color name="secondaryDarkColor">#8e0038</color>
     <color name="primaryTextColor">#ffffff</color>
     <color name="secondaryTextColor">#ffffff</color>
+    <color name="divider_silver">#C0C0C0</color>
 </resources>
