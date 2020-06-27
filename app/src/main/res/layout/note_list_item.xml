@@ -21,13 +21,13 @@
 
         <TextView
             android:id="@+id/noteTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recipientTextView"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:textAlignment="center"
             tools:text="Thank you note" />
 
         <TextView
@@ -42,20 +42,20 @@
             android:id="@+id/editAction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:text="@string/edit_action_text"
             style="?attr/borderlessButtonStyle"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/deleteAction"
             app:layout_constraintTop_toBottomOf="@id/noteTextView" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/deleteAction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:text="@string/delete_action_text"
             style="?attr/borderlessButtonStyle"
             app:layout_constraintStart_toEndOf="@+id/editAction"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/noteTextView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
