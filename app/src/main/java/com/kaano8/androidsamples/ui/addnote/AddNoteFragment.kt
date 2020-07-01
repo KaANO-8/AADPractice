@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.kaano8.androidsamples.R
 import com.kaano8.androidsamples.database.NoteDatabase
@@ -17,6 +18,8 @@ import kotlinx.android.synthetic.main.fragment_add_note.*
 class AddNoteFragment : Fragment() {
 
     private lateinit var addNoteViewModel: AddNoteViewModel
+
+    private val args: AddNoteFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,7 +39,7 @@ class AddNoteFragment : Fragment() {
             val sender = senderEditText?.text?.toString() ?: EMPTY_STRING
             val note = noteEditText?.text?.toString() ?: EMPTY_STRING
 
-            addNoteViewModel.insertNewNote(recipient, sender, note)
+            addNoteViewModel.insertOrUpdateNote(args.selectedNoteId, recipient, sender, note)
         }
 
         with(addNoteViewModel) {
@@ -58,6 +61,13 @@ class AddNoteFragment : Fragment() {
                         .navigate(AddNoteFragmentDirections.actionNavAddNoteToNavHome())
                     doneNavigateToHome()
                 }
+            })
+
+            getNoteById(args.selectedNoteId).observe(viewLifecycleOwner, Observer { note ->
+                recipientEditText?.setText(note.recipientName)
+                senderEditText?.setText(note.senderName)
+                noteEditText?.setText(note.note)
+
             })
         }
     }

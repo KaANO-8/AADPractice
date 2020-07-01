@@ -5,12 +5,16 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.kaano8.androidsamples.R
+import com.kaano8.androidsamples.database.Note
 import com.kaano8.androidsamples.database.NoteDatabase
 import com.kaano8.androidsamples.repository.NoteRepository
 import com.kaano8.androidsamples.ui.home.adapter.HomeListAdapter
+import com.kaano8.androidsamples.ui.home.adapter.NoteListItemClickListener
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.note_list_item.*
 
 class HomeFragment : Fragment() {
 
@@ -21,7 +25,11 @@ class HomeFragment : Fragment() {
         setHasOptionsMenu(true)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         setupViewModel()
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
@@ -68,7 +76,15 @@ class HomeFragment : Fragment() {
 
     private fun setupRecyclerView() {
         // As simple as that
-        val adapter = HomeListAdapter()
+        val adapter = HomeListAdapter(object : NoteListItemClickListener {
+            override fun onDeleteItem(note: Note) {
+                homeViewModel.deleteNote(note)
+            }
+
+            override fun onEditItem(note: Note) {
+                findNavController().navigate(HomeFragmentDirections.actionNavHomeToNavAddNote(note.noteId))
+            }
+        })
         homeRecyclerView?.adapter = adapter
         // Observe data from viewModel
         homeViewModel.notes.observe(viewLifecycleOwner, Observer {

@@ -10,7 +10,6 @@ class HomeViewModel(private val noteRepository: NoteRepository) : ViewModel() {
 
     val notes: LiveData<List<Note>> = noteRepository.notes
 
-
     private val _clearDatabaseSnackBarEvent = MutableLiveData<Boolean>()
 
     val clearDatabaseSnackBarEvent: LiveData<Boolean>
@@ -21,6 +20,12 @@ class HomeViewModel(private val noteRepository: NoteRepository) : ViewModel() {
             noteRepository.clear()
         }
         _clearDatabaseSnackBarEvent.value = true
+    }
+
+    fun deleteNote(note: Note) {
+        viewModelScope.launch(Dispatchers.IO) {
+            noteRepository.delete(note)
+        }
     }
 
     /**

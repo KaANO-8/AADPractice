@@ -15,6 +15,7 @@
     <string name="sender_label_text">From</string>
     <string name="note_label_text">Note</string>
     <string name="add_note_submit_button_text">Submit note</string>
+    <string name="update_note_submit_button_text">Update note</string>
     <string name="cleared_message">All your data is gone forever.</string>
     <string name="recipient_text_format">To: %1$s</string>
     <string name="sender_text_format">From: %1$s</string>

@@ -25,19 +25,29 @@ class AddNoteViewModel(private val noteRepository: NoteRepository) : ViewModel()
     val navigateToHome: LiveData<Boolean?>
         get() = _navigateToHome
 
+    // Property to get a single note
+    private val _note = MutableLiveData<Note>()
+    val note: LiveData<Note>
+        get() = _note
 
-    fun insertNewNote(recipient: String, sender: String, note: String) {
+
+    fun insertOrUpdateNote(noteId: Long, recipient: String, sender: String, note: String) {
         if (recipient.isBlank() || sender.isBlank() || note.isBlank()) {
             _blankFieldError.value = true
             return
         }
 
         viewModelScope.launch(Dispatchers.IO) {
-            noteRepository.insert(Note(recipientName = recipient, senderName = sender, note = note))
+            if(noteId > -1)
+                noteRepository.update(Note(noteId = noteId, recipientName = recipient, senderName = sender, note = note))
+            else
+                noteRepository.insert(Note(recipientName = recipient, senderName = sender, note = note))
         }
         _insertionSuccess.value = true
         _navigateToHome.value = true
     }
+
+    fun getNoteById(noteId: Long): LiveData<Note> = noteRepository.getNoteById(noteId)
 
     fun doneNavigateToHome() {
         _navigateToHome.value = null

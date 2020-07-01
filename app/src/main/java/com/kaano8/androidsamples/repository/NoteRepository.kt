@@ -14,7 +14,17 @@ class NoteRepository(private val noteDatabaseDao: NoteDatabaseDao) {
         noteDatabaseDao.insert(note)
     }
 
+    suspend fun delete(note: Note) {
+        noteDatabaseDao.deleteNote(note)
+    }
+
+    suspend fun update(note: Note) {
+        noteDatabaseDao.update(note)
+    }
+
     suspend fun clear() {
         noteDatabaseDao.clear()
     }
+
+    fun getNoteById(noteId: Long): LiveData<Note> = noteDatabaseDao.getNoteById(noteId)
 }
