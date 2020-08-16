@@ -1,14 +1,16 @@
 package com.kaano8.androidsamples.ui.asynctask
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import com.kaano8.androidsamples.R
 import kotlinx.android.synthetic.main.fragment_async_task.*
 
-class AsyncTaskFragment : Fragment() {
+class AsyncTaskFragment : Fragment(), ProgressBarCallbacks {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,11 +27,11 @@ class AsyncTaskFragment : Fragment() {
     }
 
     private fun startTask() {
-        SimpleAsyncTask(textView = asyncTaskTextView).execute()
+        SimpleAsyncTask(textView = asyncTaskTextView, progressBarCallbacks = this).execute()
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() = AsyncTaskFragment()
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun updateProgress(progress: Int) {
+        determinateBar?.setProgress(progress, true)
     }
 }

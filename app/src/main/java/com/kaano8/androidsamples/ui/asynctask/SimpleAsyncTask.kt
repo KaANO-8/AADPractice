@@ -3,14 +3,14 @@ package com.kaano8.androidsamples.ui.asynctask
 import android.os.AsyncTask
 import android.widget.TextView
 
-class SimpleAsyncTask(private val textView: TextView?) : AsyncTask<Unit, Int, String>() {
+class SimpleAsyncTask(private val textView: TextView?, private val progressBarCallbacks: ProgressBarCallbacks) : AsyncTask<Unit, Int, String>() {
     override fun doInBackground(vararg params: Unit?): String {
         // Construct a random number
         val randomNumber = (1..10).shuffled().first()
 
-        for (i in randomNumber downTo 1) {
+        for (i in 0..randomNumber) {
             // check for isCancelled() here
-            publishProgress(i)
+            publishProgress(((i.toFloat()/randomNumber)*100).toInt())
             Thread.sleep(1000)
         }
         return "Your app slept for $randomNumber secs.."
@@ -18,7 +18,9 @@ class SimpleAsyncTask(private val textView: TextView?) : AsyncTask<Unit, Int, St
 
     override fun onProgressUpdate(vararg values: Int?) {
         super.onProgressUpdate(*values)
-        textView?.text = "Waking app in ${values[0]} secs."
+        values[0]?.let {
+            progressBarCallbacks.updateProgress(it)
+        }
     }
 
     override fun onPostExecute(result: String?) {
