@@ -1,5 +1,7 @@
 package com.kaano8.androidsamples
 
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -17,16 +19,20 @@ import androidx.appcompat.widget.Toolbar
 import com.kaano8.androidsamples.database.NoteDatabase
 import com.kaano8.androidsamples.database.NoteDatabaseDao
 import com.kaano8.androidsamples.repository.NoteRepository
+import com.kaano8.androidsamples.ui.broadcastreceiver.PowerStatusReceiver
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+
+    private lateinit var powerStatusReceiver: PowerStatusReceiver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+        setupPowerStatusReceiver()
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
@@ -48,5 +54,20 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    private fun setupPowerStatusReceiver() {
+        // Starting android 8.0 system broadcast must be received using dynamic broadcast receivers
+        val intentFilters = IntentFilter().also {
+            it.addAction(Intent.ACTION_POWER_CONNECTED)
+            it.addAction(Intent.ACTION_POWER_DISCONNECTED)
+        }
+        powerStatusReceiver = PowerStatusReceiver()
+        registerReceiver(powerStatusReceiver, intentFilters)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(powerStatusReceiver)
     }
 }
