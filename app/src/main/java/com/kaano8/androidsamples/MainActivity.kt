@@ -16,6 +16,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.kaano8.androidsamples.database.NoteDatabase
 import com.kaano8.androidsamples.database.NoteDatabaseDao
 import com.kaano8.androidsamples.repository.NoteRepository
@@ -38,7 +39,9 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener { view ->
             // Example of snackbar
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+                    .setAction("Action") { LocalBroadcastManager.getInstance(this).sendBroadcast(
+                        Intent(CUSTOM_BROADCAST_INTENT)
+                    ) }.show()
         }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
@@ -61,13 +64,19 @@ class MainActivity : AppCompatActivity() {
         val intentFilters = IntentFilter().also {
             it.addAction(Intent.ACTION_POWER_CONNECTED)
             it.addAction(Intent.ACTION_POWER_DISCONNECTED)
+            it.addAction(CUSTOM_BROADCAST_INTENT)
         }
         powerStatusReceiver = PowerStatusReceiver()
         registerReceiver(powerStatusReceiver, intentFilters)
+        LocalBroadcastManager.getInstance(this).registerReceiver(powerStatusReceiver, intentFilters)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         unregisterReceiver(powerStatusReceiver)
+    }
+
+    companion object {
+        private const val CUSTOM_BROADCAST_INTENT = BuildConfig.APPLICATION_ID + "CUSTOM_BROADCAST_INTENT"
     }
 }
