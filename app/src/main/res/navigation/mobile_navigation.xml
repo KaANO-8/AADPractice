@@ -42,4 +42,10 @@
         android:name="com.kaano8.androidsamples.ui.asynctask.AsyncTaskFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_async_task" />
+
+    <fragment
+        android:id="@+id/nav_notifications"
+        android:name="com.kaano8.androidsamples.ui.notifications.NotificationsFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_async_task" />
 </navigation>

@@ -11,6 +11,7 @@
     <string name="menu_add_note">Add note</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_async_task_sample">Async task</string>
+    <string name="menu_notifications_sample">Notifications</string>
 
     <string name="recipient_label_text">To</string>
     <string name="sender_label_text">From</string>
