@@ -2,7 +2,9 @@ package com.kaano8.androidsamples.ui.notifications
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context.NOTIFICATION_SERVICE
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -11,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.NotificationCompat
+import com.kaano8.androidsamples.MainActivity
 import com.kaano8.androidsamples.R
 import kotlinx.android.synthetic.main.fragment_notifications.*
 
@@ -50,11 +53,13 @@ class NotificationsFragment : Fragment() {
     }
 
     private fun sendNotification() {
-        activity?.baseContext?.let {
+        activity?.let {
             val notificationBuilder = NotificationCompat.Builder(it, PRIMARY_CHANNEL_ID)
                 .setContentTitle("You've been notified!")
                 .setContentText("This is your notification text.")
                 .setSmallIcon(R.drawable.ic_notif_name)
+                .setContentIntent(PendingIntent.getActivity(it, NOTIFICATION_ID, Intent(it, MainActivity::class.java), PendingIntent.FLAG_UPDATE_CURRENT))
+                .setAutoCancel(true)
             (activity?.getSystemService(NOTIFICATION_SERVICE) as? NotificationManager)?.notify(
                 NOTIFICATION_ID, notificationBuilder.build()
             )
