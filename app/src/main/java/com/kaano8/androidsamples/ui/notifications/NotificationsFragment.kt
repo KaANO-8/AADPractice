@@ -42,7 +42,7 @@ class NotificationsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initNotificationManger()
         setupNotificationChannel()
-        setNotificationButtonState(true, false, false)
+        setNotificationButtonState(isNotifyEnabled = true, isUpdateEnabled = false, isCancelEnabled = false)
         // Click listener for notify button
         notify?.setOnClickListener { sendNotification() }
         // Click listener for update button
@@ -96,7 +96,7 @@ class NotificationsFragment : Fragment() {
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .addAction(R.drawable.ic_update_action, "Update Notification", updatePendingIntent)
             notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
-            setNotificationButtonState(false, true, true)
+            setNotificationButtonState(isNotifyEnabled = false, isUpdateEnabled = true, isCancelEnabled = true)
         }
     }
 
@@ -109,7 +109,7 @@ class NotificationsFragment : Fragment() {
                 ).setBigContentTitle("Notification Updated!")
             )
             notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
-            setNotificationButtonState(false, false, true)
+            setNotificationButtonState(isNotifyEnabled = false, isUpdateEnabled = false, isCancelEnabled = true)
         } else {
             activity?.showToast("Notification builder is not yet init!")
         }
@@ -118,7 +118,7 @@ class NotificationsFragment : Fragment() {
     private fun cancelButton() {
         if (::notificationManager.isInitialized) {
             notificationManager.cancel(NOTIFICATION_ID)
-            setNotificationButtonState(true, false, false)
+            setNotificationButtonState(isNotifyEnabled = true, isUpdateEnabled = false, isCancelEnabled = false)
         }
         else
             activity?.showToast("Notification manager not init yet!")
