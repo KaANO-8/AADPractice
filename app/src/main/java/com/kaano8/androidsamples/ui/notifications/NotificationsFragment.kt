@@ -77,24 +77,20 @@ class NotificationsFragment : Fragment() {
     }
 
     private fun sendNotification() {
-
         activity?.let {
             val updatePendingIntent = PendingIntent.getBroadcast(activity, NOTIFICATION_ID, Intent(ACTION_UPDATE_NOTIFICATION), PendingIntent.FLAG_ONE_SHOT)
+            val resetPendingIntent = PendingIntent.getBroadcast(activity, NOTIFICATION_ID, Intent(ACTION_RESET_BUTTONS), PendingIntent.FLAG_ONE_SHOT)
+
             notificationBuilder = NotificationCompat.Builder(it, PRIMARY_CHANNEL_ID)
                 .setContentTitle("You've been notified!")
                 .setContentText("This is your notification text.")
                 .setSmallIcon(R.drawable.ic_notif_name)
-                .setContentIntent(
-                    PendingIntent.getActivity(
-                        it, NOTIFICATION_ID, Intent(
-                            it,
-                            MainActivity::class.java
-                        ), PendingIntent.FLAG_UPDATE_CURRENT
-                    )
-                )
+                .setContentIntent(PendingIntent.getActivity(it, NOTIFICATION_ID, Intent(it, MainActivity::class.java), PendingIntent.FLAG_UPDATE_CURRENT))
                 .setAutoCancel(true)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setDeleteIntent(resetPendingIntent)
                 .addAction(R.drawable.ic_update_action, "Update Notification", updatePendingIntent)
+
             notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
             setNotificationButtonState(isNotifyEnabled = false, isUpdateEnabled = true, isCancelEnabled = true)
         }
@@ -135,11 +131,15 @@ class NotificationsFragment : Fragment() {
         private const val MASCOT_NOTIFICATION_CHANNEL_NAME = "Mascot Notification Channel"
         private const val NOTIFICATION_ID = 0
         private const val ACTION_UPDATE_NOTIFICATION = BuildConfig.APPLICATION_ID + "ACTION_UPDATE_NOTIFICATION"
+        private const val ACTION_RESET_BUTTONS = BuildConfig.APPLICATION_ID + "ACTION_RESET_BUTTONS"
     }
 
     inner class NotificationReceiver: BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
-            updateNotification()
+            when(intent?.action) {
+                ACTION_UPDATE_NOTIFICATION -> updateNotification()
+                ACTION_RESET_BUTTONS -> setNotificationButtonState(isNotifyEnabled = true, isUpdateEnabled = false, isCancelEnabled = false)
+            }
         }
     }
 }
