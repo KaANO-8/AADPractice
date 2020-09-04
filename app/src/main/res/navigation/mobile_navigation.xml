@@ -9,7 +9,7 @@
         android:id="@+id/nav_home"
         android:name="com.kaano8.androidsamples.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_nav_home_to_nav_add_note"
             app:destination="@id/nav_add_note" />
@@ -19,7 +19,7 @@
         android:id="@+id/nav_add_note"
         android:name="com.kaano8.androidsamples.ui.addnote.AddNoteFragment"
         android:label="@string/menu_add_note"
-        tools:layout="@layout/fragment_add_note" >
+        tools:layout="@layout/fragment_add_note">
         <action
             android:id="@+id/action_nav_add_note_to_nav_home"
             app:destination="@id/nav_home"
@@ -27,8 +27,8 @@
             app:popUpToInclusive="true" />
         <argument
             android:name="selectedNoteId"
-            app:argType="long"
-            android:defaultValue="-1L" />
+            android:defaultValue="-1L"
+            app:argType="long" />
     </fragment>
 
     <fragment
@@ -40,12 +40,34 @@
     <fragment
         android:id="@+id/nav_asyncTask"
         android:name="com.kaano8.androidsamples.ui.asynctask.AsyncTaskFragment"
-        android:label="@string/menu_slideshow"
+        android:label="Async task"
         tools:layout="@layout/fragment_async_task" />
 
     <fragment
         android:id="@+id/nav_notifications"
         android:name="com.kaano8.androidsamples.ui.notifications.NotificationsFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_async_task" />
+        android:label="Notifications"
+        tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/nav_background_services"
+        android:name="com.kaano8.androidsamples.ui.backgroundservices.BackgroundServicesFragment"
+        android:label="Background services"
+        tools:layout="@layout/fragment_backgorund_services" >
+        <action
+            android:id="@+id/action_nav_background_services_to_nav_asyncTask"
+            app:destination="@id/nav_asyncTask" />
+        <action
+            android:id="@+id/action_nav_background_services_to_nav_notifications"
+            app:destination="@id/nav_notifications" />
+        <action
+            android:id="@+id/action_nav_background_services_to_nav_alarm_manager"
+            app:destination="@id/nav_alarm_manager" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_alarm_manager"
+        android:name="com.kaano8.androidsamples.ui.alarmmanager.AlarmManagerFragment"
+        android:label="Alarm manager"
+        tools:layout="@layout/fragment_alarm_manager" />
 </navigation>

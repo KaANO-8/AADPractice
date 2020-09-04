@@ -17,12 +17,8 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow" />
         <item
-            android:id="@+id/nav_asyncTask"
+            android:id="@+id/nav_background_services"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_async_task_sample" />
-        <item
-            android:id="@+id/nav_notifications"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_notifications_sample" />
+            android:title="@string/menu_background_services" />
     </group>
 </menu>
