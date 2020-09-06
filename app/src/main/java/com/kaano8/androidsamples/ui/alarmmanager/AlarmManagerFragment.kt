@@ -1,17 +1,17 @@
 package com.kaano8.androidsamples.ui.alarmmanager
 
+import android.app.AlarmManager
 import android.app.NotificationManager
 import android.app.PendingIntent
-import android.content.Context
+import android.content.Context.ALARM_SERVICE
 import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
 import android.os.Bundle
+import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.NotificationCompat
 import androidx.fragment.app.Fragment
-import com.kaano8.androidsamples.MainActivity
 import com.kaano8.androidsamples.R
 import com.kaano8.androidsamples.util.extensions.createChannel
 import com.kaano8.androidsamples.util.extensions.showToast
@@ -21,6 +21,10 @@ import kotlinx.android.synthetic.main.fragment_alarm_manager.*
 class AlarmManagerFragment : Fragment() {
 
     private var notificationManager: NotificationManager? = null
+
+    private var alarmManager: AlarmManager? = null
+
+    private var notifyPendingIntent: PendingIntent? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,40 +47,38 @@ class AlarmManagerFragment : Fragment() {
             )
         }
 
+        val alarmUp = PendingIntent.getBroadcast(activity?.baseContext, NOTIFICATION_ID, Intent(activity?.baseContext, AlarmReceiver::class.java), PendingIntent.FLAG_NO_CREATE) != null
+
+        alarmManagerToggle?.isChecked = alarmUp
+
         alarmManagerToggle?.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                deliverNotification()
-                activity?.showToast("Stand Up Alarm On!")
+                setupAlarm()
             } else {
+                cancelAlarm()
                 notificationManager?.cancelAll()
                 activity?.showToast("Stand Up Alarm Off!")
             }
         }
     }
 
-    private fun deliverNotification() {
-        val contentIntent = Intent(activity?.baseContext, MainActivity::class.java)
-        val pendingIntent = PendingIntent.getActivity(activity?.baseContext, NOTIFICATION_ID, contentIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+    private fun setupAlarm() {
+        notifyPendingIntent =PendingIntent.getBroadcast(activity?.baseContext, NOTIFICATION_ID, Intent(activity?.baseContext, AlarmReceiver::class.java), PendingIntent.FLAG_UPDATE_CURRENT)
 
-        val notificationBuilder = NotificationCompat.Builder(activity?.baseContext as Context, PRIMARY_CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_stand_up).setContentTitle("Stand Up Alert")
-                .setContentText("You should stand up and walk around now!")
-                .setContentIntent(pendingIntent)
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setAutoCancel(true)
-                .setDefaults(NotificationCompat.DEFAULT_ALL)
+        alarmManager = activity?.baseContext?.getSystemService(ALARM_SERVICE) as? AlarmManager
 
-        notificationManager?.notify(NOTIFICATION_ID, notificationBuilder.build())
+        alarmManager?.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_FIFTEEN_MINUTES, AlarmManager.INTERVAL_FIFTEEN_MINUTES, notifyPendingIntent)
+    }
+
+    private fun cancelAlarm() {
+        alarmManager?.cancel(notifyPendingIntent)
     }
 
     companion object {
-
-        private const val PRIMARY_CHANNEL_ID = "primary_notification_channel"
-        private const val NOTIFICATION_ID = 0
+        internal const val PRIMARY_CHANNEL_ID = "primary_notification_channel"
+        internal const val NOTIFICATION_ID = 0
         private const val NOTIFICATION_CHANNEL_NAME = "Stand up notification"
         private const val NOTIFICATION_CHANNEL_DESCRIPTION =
             "Notifies every 15 minutes to stand up and walk"
-
-        fun newInstance(param1: String, param2: String) = AlarmManagerFragment()
     }
 }
