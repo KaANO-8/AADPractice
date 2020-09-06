@@ -42,5 +42,9 @@ class BackgroundServicesFragment : Fragment() {
         alarmManagerButton?.setOnClickListener {
             findNavController().navigate(BackgroundServicesFragmentDirections.actionNavBackgroundServicesToNavAlarmManager())
         }
+
+        jobSchedulerButton?.setOnClickListener {
+            findNavController().navigate(BackgroundServicesFragmentDirections.actionNavBackgroundServicesToNavJobScheduler())
+        }
     }
 }

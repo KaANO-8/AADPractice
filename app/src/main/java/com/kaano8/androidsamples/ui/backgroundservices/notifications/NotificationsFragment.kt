@@ -1,4 +1,4 @@
-package com.kaano8.androidsamples.ui.notifications
+package com.kaano8.androidsamples.ui.backgroundservices.notifications
 
 import android.app.NotificationChannel
 import android.app.NotificationManager

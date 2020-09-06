@@ -1,4 +1,4 @@
-package com.kaano8.androidsamples.ui.alarmmanager
+package com.kaano8.androidsamples.ui.backgroundservices.alarmmanager
 
 import android.app.NotificationManager
 import android.app.PendingIntent

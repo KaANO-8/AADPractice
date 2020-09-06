@@ -3,8 +3,6 @@ package com.kaano8.androidsamples
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -17,10 +15,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import com.kaano8.androidsamples.database.NoteDatabase
-import com.kaano8.androidsamples.database.NoteDatabaseDao
-import com.kaano8.androidsamples.repository.NoteRepository
-import com.kaano8.androidsamples.ui.broadcastreceiver.PowerStatusReceiver
+import com.kaano8.androidsamples.ui.backgroundservices.broadcastreceiver.PowerStatusReceiver
 
 class MainActivity : AppCompatActivity() {
 

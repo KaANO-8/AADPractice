@@ -1,4 +1,4 @@
-package com.kaano8.androidsamples.ui.alarmmanager
+package com.kaano8.androidsamples.ui.backgroundservices.alarmmanager
 
 import android.app.AlarmManager
 import android.app.NotificationManager

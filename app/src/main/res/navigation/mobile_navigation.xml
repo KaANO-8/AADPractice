@@ -39,13 +39,13 @@
 
     <fragment
         android:id="@+id/nav_asyncTask"
-        android:name="com.kaano8.androidsamples.ui.asynctask.AsyncTaskFragment"
+        android:name="com.kaano8.androidsamples.ui.backgroundservices.asynctask.AsyncTaskFragment"
         android:label="Async task"
         tools:layout="@layout/fragment_async_task" />
 
     <fragment
         android:id="@+id/nav_notifications"
-        android:name="com.kaano8.androidsamples.ui.notifications.NotificationsFragment"
+        android:name="com.kaano8.androidsamples.ui.backgroundservices.notifications.NotificationsFragment"
         android:label="Notifications"
         tools:layout="@layout/fragment_notifications" />
 
@@ -63,11 +63,20 @@
         <action
             android:id="@+id/action_nav_background_services_to_nav_alarm_manager"
             app:destination="@id/nav_alarm_manager" />
+        <action
+            android:id="@+id/action_nav_background_services_to_nav_job_scheduler"
+            app:destination="@id/nav_job_scheduler" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_alarm_manager"
-        android:name="com.kaano8.androidsamples.ui.alarmmanager.AlarmManagerFragment"
+        android:name="com.kaano8.androidsamples.ui.backgroundservices.alarmmanager.AlarmManagerFragment"
         android:label="Alarm manager"
         tools:layout="@layout/fragment_alarm_manager" />
+
+    <fragment
+        android:id="@+id/nav_job_scheduler"
+        android:name="com.kaano8.androidsamples.ui.backgroundservices.jobscheduler.JobSchedulerFragment"
+        android:label="Job Scheduler"
+        tools:layout="@layout/fragment_job_scheduler" />
 </navigation>

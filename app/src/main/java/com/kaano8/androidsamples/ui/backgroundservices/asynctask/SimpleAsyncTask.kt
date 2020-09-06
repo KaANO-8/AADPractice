@@ -1,4 +1,4 @@
-package com.kaano8.androidsamples.ui.asynctask
+package com.kaano8.androidsamples.ui.backgroundservices.asynctask
 
 import android.os.AsyncTask
 import android.widget.TextView

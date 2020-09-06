@@ -1,9 +1,8 @@
-package com.kaano8.androidsamples.ui.broadcastreceiver
+package com.kaano8.androidsamples.ui.backgroundservices.broadcastreceiver
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.widget.Toast
 import com.kaano8.androidsamples.util.extensions.showToast
 
 class PowerStatusReceiver : BroadcastReceiver() {
