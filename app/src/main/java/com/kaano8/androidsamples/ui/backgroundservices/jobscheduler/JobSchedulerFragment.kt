@@ -46,6 +46,18 @@ class JobSchedulerFragment : Fragment() {
                 // Not required
             }
         })
+
+        scheduleAsyncTaskJob?.setOnClickListener { scheduleAsyncTaskJob() }
+    }
+
+    private fun scheduleAsyncTaskJob() {
+        jobScheduler = activity?.getSystemService(JOB_SCHEDULER_SERVICE) as? JobScheduler
+
+        val jobBuilder = JobInfo.Builder(ASYNCTASK_JOB_ID, ComponentName(requireActivity().packageName, AsyncTaskJobScheduler::class.java.name))
+            .setRequiresCharging(chargingSwitch?.isChecked == true)
+
+        if (chargingSwitch?.isChecked == true)
+            jobScheduler?.schedule(jobBuilder.build())
     }
 
     private fun scheduleJob() {
@@ -81,6 +93,7 @@ class JobSchedulerFragment : Fragment() {
             requireActivity().showToast("Please set at least one constraint")
     }
 
+
     private fun cancelJob() {
         jobScheduler?.cancelAll()
         jobScheduler = null
@@ -89,5 +102,6 @@ class JobSchedulerFragment : Fragment() {
 
     companion object {
         private const val JOB_ID = 0
+        private const val ASYNCTASK_JOB_ID = 1
     }
 }

@@ -16,6 +16,9 @@
         <service
             android:name=".ui.backgroundservices.jobscheduler.NotificationJobService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name=".ui.backgroundservices.jobscheduler.AsyncTaskJobScheduler"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
