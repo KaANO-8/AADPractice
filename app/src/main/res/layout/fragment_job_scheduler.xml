@@ -69,5 +69,63 @@
         app:layout_constraintStart_toEndOf="@+id/scheduleJobButton"
         app:layout_constraintTop_toBottomOf="@+id/networkOptions" />
 
+    <TextView
+        android:id="@+id/requiresSubtitleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/network_type_required"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scheduleJobButton" />
+
+    <Switch
+        android:id="@+id/idleSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+        android:text="@string/device_idle"
+        app:layout_constraintEnd_toStartOf="@+id/chargingSwitch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/requiresSubtitleTextView" />
+
+    <Switch
+        android:id="@+id/chargingSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+        android:text="@string/device_charging"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/idleSwitch"
+        app:layout_constraintTop_toBottomOf="@+id/requiresSubtitleTextView" />
+
+    <TextView
+        android:id="@+id/overrideSubtitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/override_deadline"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idleSwitch" />
+
+    <TextView
+        android:id="@+id/overrideValueSubtitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        app:layout_constraintStart_toEndOf="@+id/overrideSubtitleTextView"
+        app:layout_constraintTop_toBottomOf="@+id/idleSwitch"
+        tools:text="5 secs" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+        app:layout_constraintTop_toBottomOf="@+id/overrideValueSubtitleTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
