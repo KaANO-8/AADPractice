@@ -1,6 +1,7 @@
 package com.kaano8.androidsamples.database
 
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -9,5 +10,6 @@ data class Note(
     @PrimaryKey(autoGenerate = true) var noteId: Long = 0L,
     @ColumnInfo(name = "recipient_name") var recipientName: String,
     @ColumnInfo(name = "sender_name") var senderName: String,
-    var note: String
+    var note: String,
+    @Embedded val gift: Gift
 )

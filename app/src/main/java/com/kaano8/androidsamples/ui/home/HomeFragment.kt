@@ -9,12 +9,11 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.kaano8.androidsamples.R
 import com.kaano8.androidsamples.database.Note
-import com.kaano8.androidsamples.database.NoteDatabase
+import com.kaano8.androidsamples.database.AppDatabase
 import com.kaano8.androidsamples.repository.NoteRepository
 import com.kaano8.androidsamples.ui.home.adapter.HomeListAdapter
 import com.kaano8.androidsamples.ui.home.adapter.NoteListItemClickListener
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.note_list_item.*
 
 class HomeFragment : Fragment() {
 
@@ -68,7 +67,7 @@ class HomeFragment : Fragment() {
 
     private fun setupViewModel() {
         val application = requireNotNull(activity).application
-        val dataSource = NoteDatabase.getInstance(application).noteDatabaseDao
+        val dataSource = AppDatabase.getInstance(application).noteDatabaseDao
         val repository = NoteRepository(dataSource)
         val viewModelFactory = HomeViewModelFactory(noteRepository = repository)
         homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)

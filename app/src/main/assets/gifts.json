@@ -1,0 +1,26 @@
+[
+  {
+    "id": "amazon-gift",
+    "name": "Amazon Gift Voucher",
+    "amount": 1000,
+    "remark": "redeemable at amazon.co.in"
+  },
+  {
+    "id": "flikart-gift",
+    "name": "Flipkart Gift Voucher",
+    "amount": 500,
+    "remark": "redeemable at flipkart.com"
+  },
+  {
+    "id": "myntra-gift",
+    "name": "Myntra Gift Voucher",
+    "amount": 800,
+    "remark": "redeemable at myntra.com"
+  },
+  {
+    "id": "jabong-gift",
+    "name": "Jabong Gift Voucher",
+    "amount": 700,
+    "remark": "redeemable at jabong.com"
+  }
+]

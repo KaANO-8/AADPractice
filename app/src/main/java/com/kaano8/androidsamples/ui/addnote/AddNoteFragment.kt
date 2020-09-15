@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.kaano8.androidsamples.R
-import com.kaano8.androidsamples.database.NoteDatabase
+import com.kaano8.androidsamples.database.AppDatabase
 import com.kaano8.androidsamples.repository.NoteRepository
 import kotlinx.android.synthetic.main.fragment_add_note.*
 
@@ -74,7 +74,7 @@ class AddNoteFragment : Fragment() {
 
     private fun setupViewModel() {
         val application = requireNotNull(this.activity).application
-        val dataSource = NoteDatabase.getInstance(application).noteDatabaseDao
+        val dataSource = AppDatabase.getInstance(application).noteDatabaseDao
         val noteRepository = NoteRepository(dataSource)
         val viewModelFactory = AddNoteViewModelFactory(noteRepository)
         addNoteViewModel =
