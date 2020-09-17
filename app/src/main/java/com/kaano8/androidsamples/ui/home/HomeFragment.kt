@@ -67,8 +67,9 @@ class HomeFragment : Fragment() {
 
     private fun setupViewModel() {
         val application = requireNotNull(activity).application
-        val dataSource = AppDatabase.getInstance(application).noteDatabaseDao
-        val repository = NoteRepository(dataSource)
+        val noteDataSource = AppDatabase.getInstance(application).noteDatabaseDao
+        val giftDataSource = AppDatabase.getInstance(application).giftDao
+        val repository = NoteRepository(noteDataSource, giftDataSource)
         val viewModelFactory = HomeViewModelFactory(noteRepository = repository)
         homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
     }

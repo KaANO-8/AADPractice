@@ -38,6 +38,18 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Rahul" />
 
+        <TextView
+            android:id="@+id/giftTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noteTextView"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            tools:text="Gifted : Amazon gift vouncher"/>
+
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/editAction"
             android:layout_width="wrap_content"
@@ -46,7 +58,7 @@
             style="?attr/borderlessButtonStyle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/deleteAction"
-            app:layout_constraintTop_toBottomOf="@id/noteTextView" />
+            app:layout_constraintTop_toBottomOf="@id/giftTextView" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/deleteAction"
@@ -56,6 +68,6 @@
             style="?attr/borderlessButtonStyle"
             app:layout_constraintStart_toEndOf="@+id/editAction"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/noteTextView" />
+            app:layout_constraintTop_toBottomOf="@id/giftTextView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

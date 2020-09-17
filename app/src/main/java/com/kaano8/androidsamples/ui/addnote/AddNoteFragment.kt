@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.kaano8.androidsamples.R
 import com.kaano8.androidsamples.database.AppDatabase
+import com.kaano8.androidsamples.database.Gift
 import com.kaano8.androidsamples.repository.NoteRepository
 import kotlinx.android.synthetic.main.fragment_add_note.*
 
@@ -20,6 +22,8 @@ class AddNoteFragment : Fragment() {
     private lateinit var addNoteViewModel: AddNoteViewModel
 
     private val args: AddNoteFragmentArgs by navArgs()
+
+    private lateinit var gifts: List<Gift>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,12 +38,15 @@ class AddNoteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        addNoteViewModel.gifts.observe(viewLifecycleOwner, Observer { giftList -> populateSpinner(giftList) })
+
         submitButton?.setOnClickListener {
             val recipient = recipientEditText?.text?.toString() ?: EMPTY_STRING
             val sender = senderEditText?.text?.toString() ?: EMPTY_STRING
             val note = noteEditText?.text?.toString() ?: EMPTY_STRING
+            val gift = gifts[giftSpinner?.selectedItemPosition ?: 0]
 
-            addNoteViewModel.insertOrUpdateNote(args.selectedNoteId, recipient, sender, note)
+            addNoteViewModel.insertOrUpdateNote(args.selectedNoteId, recipient, sender, note, gift)
         }
 
         with(addNoteViewModel) {
@@ -63,22 +70,31 @@ class AddNoteFragment : Fragment() {
                 }
             })
 
-            getNoteById(args.selectedNoteId).observe(viewLifecycleOwner, Observer { note ->
-                recipientEditText?.setText(note.recipientName)
-                senderEditText?.setText(note.senderName)
-                noteEditText?.setText(note.note)
-
-            })
+            if (args.selectedNoteId != -1L) {
+                getNoteById(args.selectedNoteId).observe(viewLifecycleOwner, Observer { note ->
+                    recipientEditText?.setText(note.recipientName)
+                    senderEditText?.setText(note.senderName)
+                    noteEditText?.setText(note.note)
+                })
+            }
         }
     }
 
     private fun setupViewModel() {
         val application = requireNotNull(this.activity).application
-        val dataSource = AppDatabase.getInstance(application).noteDatabaseDao
-        val noteRepository = NoteRepository(dataSource)
+        val noteDataSource = AppDatabase.getInstance(application).noteDatabaseDao
+        val giftDataSource = AppDatabase.getInstance(application).giftDao
+        val noteRepository = NoteRepository(noteDataSource, giftDataSource)
         val viewModelFactory = AddNoteViewModelFactory(noteRepository)
         addNoteViewModel =
             ViewModelProvider(this, viewModelFactory).get(AddNoteViewModel::class.java)
+    }
+
+    private fun populateSpinner(giftList: List<Gift>) {
+        gifts = giftList
+        val spinnerList = giftList.map { it.name }
+        val adapter = ArrayAdapter<String>(requireNotNull(activity?.baseContext), R.layout.support_simple_spinner_dropdown_item, spinnerList)
+        giftSpinner.adapter = adapter
     }
 
     companion object {

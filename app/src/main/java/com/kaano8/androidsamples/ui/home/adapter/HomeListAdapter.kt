@@ -25,6 +25,7 @@ class HomeListAdapter(private val listItemClickListener: NoteListItemClickListen
              recipientText.text = recipientText.context.getString(R.string.recipient_text_format, item.recipientName)
              noteText.text = item.note
              senderText.text = recipientText.context.getString(R.string.sender_text_format, item.senderName)
+             giftText.text = giftText.context.getString(R.string.gift_text_format, item.gift.name, item.gift.amount.toString())
              deleteActionButton.setOnClickListener { listItemClickListener.onDeleteItem(item) }
              editActionButton.setOnClickListener { listItemClickListener.onEditItem(item) }
          }
@@ -36,6 +37,7 @@ class HomeListAdapter(private val listItemClickListener: NoteListItemClickListen
         val senderText: TextView = view.findViewById(R.id.senderTextView)
         val deleteActionButton: Button = view.findViewById(R.id.deleteAction)
         val editActionButton: Button = view.findViewById(R.id.editAction)
+        val giftText: TextView = view.findViewById(R.id.giftTextView)
     }
 
     class NoteDiffCallback: DiffUtil.ItemCallback<Note>() {
