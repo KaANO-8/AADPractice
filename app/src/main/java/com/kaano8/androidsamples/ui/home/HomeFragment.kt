@@ -11,6 +11,7 @@ import com.kaano8.androidsamples.R
 import com.kaano8.androidsamples.database.Note
 import com.kaano8.androidsamples.database.AppDatabase
 import com.kaano8.androidsamples.repository.NoteRepository
+import com.kaano8.androidsamples.settings.SettingsFragment
 import com.kaano8.androidsamples.ui.home.adapter.HomeListAdapter
 import com.kaano8.androidsamples.ui.home.adapter.NoteListItemClickListener
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -60,6 +61,9 @@ class HomeFragment : Fragment() {
         when (item.itemId) {
             R.id.action_clear_database -> {
                 homeViewModel.clearDatabase()
+            }
+            R.id.action_settings -> {
+                findNavController().navigate(HomeFragmentDirections.actionNavHomeToNavSettings())
             }
         }
         return super.onOptionsItemSelected(item)

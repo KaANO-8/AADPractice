@@ -67,6 +67,9 @@ dependencies {
     //GSON
     implementation "com.google.code.gson:gson:$gsonVersion"
 
+    // settings preferences
+    implementation "androidx.preference:preference-ktx:$preference_version"
+
     // Recycler View
     implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
 

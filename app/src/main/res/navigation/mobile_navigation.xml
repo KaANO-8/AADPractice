@@ -13,6 +13,10 @@
         <action
             android:id="@+id/action_nav_home_to_nav_add_note"
             app:destination="@id/nav_add_note" />
+
+        <action
+            android:id="@+id/action_nav_home_to_nav_settings"
+            app:destination="@+id/nav_settings" />
     </fragment>
 
     <fragment
@@ -53,7 +57,7 @@
         android:id="@+id/nav_background_services"
         android:name="com.kaano8.androidsamples.ui.backgroundservices.BackgroundServicesFragment"
         android:label="Background services"
-        tools:layout="@layout/fragment_backgorund_services" >
+        tools:layout="@layout/fragment_backgorund_services">
         <action
             android:id="@+id/action_nav_background_services_to_nav_asyncTask"
             app:destination="@id/nav_asyncTask" />
@@ -79,4 +83,9 @@
         android:name="com.kaano8.androidsamples.ui.backgroundservices.jobscheduler.JobSchedulerFragment"
         android:label="Job Scheduler"
         tools:layout="@layout/fragment_job_scheduler" />
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.kaano8.androidsamples.settings.SettingsFragment"
+        android:label="Settings" />
 </navigation>

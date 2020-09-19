@@ -3,6 +3,8 @@ package com.kaano8.androidsamples
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -15,7 +17,9 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.kaano8.androidsamples.settings.SettingsFragment
 import com.kaano8.androidsamples.ui.backgroundservices.broadcastreceiver.PowerStatusReceiver
+import com.kaano8.androidsamples.util.extensions.showToast
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,14 +34,14 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         setupPowerStatusReceiver()
 
-        val fab: FloatingActionButton = findViewById(R.id.fab)
+        /*val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
             // Example of snackbar
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action") { LocalBroadcastManager.getInstance(this).sendBroadcast(
                         Intent(CUSTOM_BROADCAST_INTENT)
                     ) }.show()
-        }
+        }*/
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
