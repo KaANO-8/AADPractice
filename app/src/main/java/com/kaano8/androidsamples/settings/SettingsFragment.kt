@@ -15,7 +15,7 @@ class SettingsFragment: PreferenceFragmentCompat() {
         setPreferencesFromResource(R.xml.settings_prefs, rootKey)
         val darkModeSwitch = findPreference<SwitchPreferenceCompat>("darkMode")
         darkModeSwitch?.onPreferenceChangeListener =
-            Preference.OnPreferenceChangeListener { preference, newValue ->
+            Preference.OnPreferenceChangeListener { _, newValue ->
                 if (newValue == true)
                     AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
                 else
