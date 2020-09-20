@@ -1,10 +1,11 @@
-package com.kaano8.androidsamples.database
+package com.kaano8.androidsamples.database.gift
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.kaano8.androidsamples.database.gift.Gift
 
 @Dao
 interface GiftDatabaseDao {

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kaano8.androidsamples.R
-import com.kaano8.androidsamples.database.Note
+import com.kaano8.androidsamples.database.note.Note
 
 class HomeListAdapter(private val listItemClickListener: NoteListItemClickListener) : ListAdapter<Note, RecyclerView.ViewHolder>(NoteDiffCallback()) {
 

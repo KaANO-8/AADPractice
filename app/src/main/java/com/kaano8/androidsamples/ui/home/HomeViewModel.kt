@@ -1,7 +1,7 @@
 package com.kaano8.androidsamples.ui.home
 
 import androidx.lifecycle.*
-import com.kaano8.androidsamples.database.Note
+import com.kaano8.androidsamples.database.note.Note
 import com.kaano8.androidsamples.repository.NoteRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

@@ -7,7 +7,7 @@ import androidx.work.WorkerParameters
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
-import com.kaano8.androidsamples.database.Gift
+import com.kaano8.androidsamples.database.gift.Gift
 import com.kaano8.androidsamples.database.AppDatabase
 import kotlinx.coroutines.coroutineScope
 
