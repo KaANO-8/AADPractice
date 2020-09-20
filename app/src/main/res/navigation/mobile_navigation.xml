@@ -88,4 +88,24 @@
         android:id="@+id/nav_settings"
         android:name="com.kaano8.androidsamples.settings.SettingsFragment"
         android:label="Settings" />
+
+    <fragment
+        android:id="@+id/nav_student_list"
+        android:name="com.kaano8.androidsamples.ui.studentmanagement.list.StudentListFragment"
+        android:label="Student Management"
+        tools:layout="@layout/fragment_student_list">
+        <action
+            android:id="@+id/action_nav_student_list_to_nav_add_student"
+            app:destination="@id/nav_add_student" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_add_student"
+        android:name="com.kaano8.androidsamples.ui.studentmanagement.add.AddStudentFragment"
+        android:label="Add Student"
+        tools:layout="@layout/fragment_add_student">
+        <action
+            android:id="@+id/action_nav_add_student_to_nav_student_list"
+            app:destination="@id/nav_student_list" />
+    </fragment>
 </navigation>

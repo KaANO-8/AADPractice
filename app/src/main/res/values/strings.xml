@@ -48,4 +48,8 @@
     <string name="current_class">Class :</string>
     <string name="_button_text">Edit</string>
     <string name="edit_details_button">Add/Edit Details</string>
+    <string name="enter_first_name">Enter first name</string>
+    <string name="enter_last_name">Enter last name</string>
+    <string name="enter_class">Enter class</string>
+    <string name="add_student">Add Student</string>
 </resources>

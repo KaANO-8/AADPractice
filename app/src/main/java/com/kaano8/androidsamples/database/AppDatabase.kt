@@ -12,6 +12,7 @@ import com.kaano8.androidsamples.database.gift.GiftDatabaseDao
 import com.kaano8.androidsamples.database.note.Note
 import com.kaano8.androidsamples.database.note.NoteDatabaseDao
 import com.kaano8.androidsamples.database.student.Student
+import com.kaano8.androidsamples.database.student.StudentDao
 import com.kaano8.androidsamples.workmanager.SeedDatabaseWorker
 
 @Database(entities = [Note::class, Gift::class, Student::class], exportSchema = false, version = 1)
@@ -20,6 +21,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract val noteDatabaseDao: NoteDatabaseDao
 
     abstract val giftDao: GiftDatabaseDao
+
+    abstract val studentDao: StudentDao
 
     companion object {
         @Volatile
