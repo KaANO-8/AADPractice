@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kaano8.androidsamples.R
 import com.kaano8.androidsamples.database.student.Student
 
-class StudentListAdapter: ListAdapter<Student, RecyclerView.ViewHolder>(StudentListDiffUtil())  {
+class StudentListAdapter(private val onStudentItemClickListener: OnStudentItemClickListener): ListAdapter<Student, RecyclerView.ViewHolder>(StudentListDiffUtil())  {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -27,7 +27,8 @@ class StudentListAdapter: ListAdapter<Student, RecyclerView.ViewHolder>(StudentL
             lastNameText.text = item.lastName
             classText.text = item.currentClass
             editButton.setOnClickListener { }
-            editDetailsButton.setOnClickListener {  }
+            editDetailsButton.setOnClickListener { onStudentItemClickListener.onEditDetailsClicked(item.studentId) }
+            viewDetailsButton.setOnClickListener { onStudentItemClickListener.onViewDetailsClicked(item.studentId) }
         }
     }
 
@@ -38,6 +39,7 @@ class StudentListAdapter: ListAdapter<Student, RecyclerView.ViewHolder>(StudentL
         val classText: TextView = view.findViewById(R.id.classValue)
         val editButton: Button = view.findViewById(R.id.editButton)
         val editDetailsButton: Button = view.findViewById(R.id.editDetailsButton)
+        val viewDetailsButton: Button = view.findViewById(R.id.viewDetailsButton)
     }
 
     class StudentListDiffUtil: DiffUtil.ItemCallback<Student>() {

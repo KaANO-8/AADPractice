@@ -1,10 +1,10 @@
 package com.kaano8.androidsamples.database.student
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
+import com.kaano8.androidsamples.database.student.course.Course
+import com.kaano8.androidsamples.database.student.details.StudentDetails
+import com.kaano8.androidsamples.database.student.relation.StudentWithDetails
 
 @Dao
 interface StudentDao {
@@ -17,4 +17,16 @@ interface StudentDao {
     @Query("Select * from Student where studentId = :studentId")
     fun getStudent(studentId: Long): LiveData<Student>
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertStudentDetails(studentDetails: StudentDetails)
+
+    @Transaction
+    @Query("Select * from Student where studentId = :studentId")
+    fun getStudentWithDetails(studentId: Long): LiveData<StudentWithDetails>
+
+    @Insert
+    fun insertAllCourses(courses: List<Course>)
+
+    @Query("Select * from Course")
+    fun getAllCourses(): LiveData<List<Course>>
 }

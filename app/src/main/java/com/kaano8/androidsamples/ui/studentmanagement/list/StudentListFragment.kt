@@ -1,16 +1,16 @@
 package com.kaano8.androidsamples.ui.studentmanagement.list
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.kaano8.androidsamples.R
+import com.kaano8.androidsamples.ui.studentmanagement.adapter.OnStudentItemClickListener
 import com.kaano8.androidsamples.ui.studentmanagement.adapter.StudentListAdapter
-import com.kaano8.androidsamples.ui.studentmanagement.add.AddStudentViewModel
-import com.kaano8.androidsamples.ui.studentmanagement.add.AddStudentViewModelFactory
 import com.kaano8.androidsamples.util.extensions.Database
 import kotlinx.android.synthetic.main.fragment_student_list.*
 
@@ -30,10 +30,22 @@ class StudentListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+
+        addNewStudentFab?.setOnClickListener {
+            findNavController().navigate(StudentListFragmentDirections.actionNavStudentListToNavAddStudent())
+        }
     }
 
     private fun setupRecyclerView() {
-        val studentListAdapter = StudentListAdapter()
+        val studentListAdapter = StudentListAdapter(object : OnStudentItemClickListener {
+            override fun onEditDetailsClicked(studentId: Long) {
+                findNavController().navigate(StudentListFragmentDirections.actionNavStudentListToNavAddStudentDetails(studentId))
+            }
+
+            override fun onViewDetailsClicked(studentId: Long) {
+                findNavController().navigate(StudentListFragmentDirections.actionNavStudentListToNavViewStudentDetails(studentId))
+            }
+        })
         studentRecyclerView?.adapter = studentListAdapter
 
         studentListViewModel.studentsList.observe(viewLifecycleOwner, Observer { studentList ->

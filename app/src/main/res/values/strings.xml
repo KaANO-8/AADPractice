@@ -43,13 +43,18 @@
     <string name="override_deadline">Override Deadline: </string>
     <string name="schedule_async_task_job">Schedule async task job</string>
     <string name="settings">Settings</string>
-    <string name="first_name">First Name :</string>
-    <string name="last_name">Last Name :</string>
-    <string name="current_class">Class :</string>
+    <string name="first_name">First Name : </string>
+    <string name="last_name">Last Name : </string>
+    <string name="current_class">Class : </string>
     <string name="_button_text">Edit</string>
-    <string name="edit_details_button">Add/Edit Details</string>
+    <string name="edit_details_button">Add/Edit details</string>
     <string name="enter_first_name">Enter first name</string>
     <string name="enter_last_name">Enter last name</string>
     <string name="enter_class">Enter class</string>
-    <string name="add_student">Add Student</string>
+    <string name="add_student">Add student</string>
+    <string name="student_id">Student ID: </string>
+    <string name="view_details">View details</string>
+    <string name="enter_address">Enter address</string>
+    <string name="enter_phone_number">Enter phone number</string>
+    <string name="add_student_details">Add student details</string>
 </resources>

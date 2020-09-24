@@ -9,22 +9,35 @@ import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
 import com.kaano8.androidsamples.database.gift.Gift
 import com.kaano8.androidsamples.database.AppDatabase
+import com.kaano8.androidsamples.database.student.course.Course
 import kotlinx.coroutines.coroutineScope
 
 class SeedDatabaseWorker(context: Context, workerParameters: WorkerParameters) :
     CoroutineWorker(context, workerParameters) {
     override suspend fun doWork(): Result = coroutineScope {
         try {
+            // Init database
+            val database = AppDatabase.getInstance(applicationContext)
+
             applicationContext.assets.open("gifts.json").use { inputStream ->
                 JsonReader(inputStream.reader()).use { jsonReader ->
                     val giftType = object : TypeToken<List<Gift>>() {}.type
                     val giftList: List<Gift> = Gson().fromJson(jsonReader, giftType)
 
-                    val database = AppDatabase.getInstance(applicationContext)
                     database.giftDao.insertAll(giftList)
-                    Result.success()
                 }
             }
+
+            applicationContext.assets.open("courses.json").use { inputStream ->
+                JsonReader(inputStream.reader()).use { jsonReader ->
+                    val courseType = object : TypeToken<List<Course>>() {}.type
+                    val courseList: List<Course> = Gson().fromJson(jsonReader, courseType)
+
+                    database.studentDao.insertAllCourses(courseList)
+                }
+            }
+
+            Result.success()
         } catch (exception: Exception) {
             Log.e("Exception", "Error seeding database")
             Result.failure()

@@ -20,5 +20,10 @@
             android:id="@+id/nav_background_services"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_background_services" />
+
+        <item
+            android:id="@+id/nav_student_list"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Student Management" />
     </group>
 </menu>

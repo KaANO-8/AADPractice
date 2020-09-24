@@ -10,7 +10,7 @@
         android:id="@+id/studentIdLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/first_name"
+        android:text="@string/student_id"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/firstNameLabel"
         app:layout_constraintStart_toStartOf="parent"
@@ -105,5 +105,25 @@
         android:text="@string/edit_details_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editButton" />
+
+    <Button
+        android:id="@+id/viewDetailsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/editDetailsButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/deleteStudentButton"
+        android:text="@string/view_details"
+        android:layout_marginTop="4dp"/>
+
+    <Button
+        android:id="@+id/deleteStudentButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/editDetailsButton"
+        app:layout_constraintStart_toEndOf="@+id/viewDetailsButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Delete student"
+        android:layout_marginTop="4dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

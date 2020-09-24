@@ -1,0 +1,18 @@
+[
+  {
+    "courseId": 1200,
+    "courseName": "Android"
+  },
+  {
+    "courseId": 1201,
+    "courseName": "iOS"
+  },
+  {
+    "courseId": 1202,
+    "courseName": "Cloud"
+  },
+  {
+    "courseId": 1203,
+    "courseName": "Database"
+  }
+]
