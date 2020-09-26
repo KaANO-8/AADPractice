@@ -57,4 +57,5 @@
     <string name="enter_address">Enter address</string>
     <string name="enter_phone_number">Enter phone number</string>
     <string name="add_student_details">Add student details</string>
+    <string name="available_courses">Available Courses</string>
 </resources>

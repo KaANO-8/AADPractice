@@ -9,6 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.kaano8.androidsamples.R
+import com.kaano8.androidsamples.models.toCourseListItem
+import com.kaano8.androidsamples.ui.studentmanagement.add.details.adpater.CourseListAdapter
 import com.kaano8.androidsamples.util.extensions.Database.getStudentRepository
 import kotlinx.android.synthetic.main.fragment_add_student_details.*
 
@@ -18,6 +20,8 @@ class AddStudentDetailsFragment : Fragment() {
     private lateinit var addStudentDetailsViewModel: AddStudentDetailsViewModel
 
     private val args: AddStudentDetailsFragmentArgs by navArgs()
+
+    private lateinit var courseListAdapter: CourseListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,9 +35,17 @@ class AddStudentDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        addStudentDetailsViewModel.courseList.observe(viewLifecycleOwner, {
+            courseListAdapter = CourseListAdapter(it.map { course -> course.toCourseListItem()  })
+            courseListView?.adapter = courseListAdapter
+        })
+
         addStudentDetailsButton?.setOnClickListener {
             val address = addressEditText?.text.toString()
             val phoneNumber = phoneNumberEditText?.text.toString()
+
+            if (::courseListAdapter.isInitialized)
+                addStudentDetailsViewModel.insertSelectedCourseByStudent(courseListAdapter.getDataSource(), args.selectedStudentId)
 
             addStudentDetailsViewModel.addStudentDeatils(args.selectedStudentId, address, phoneNumber)
         }

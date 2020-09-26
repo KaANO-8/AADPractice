@@ -7,4 +7,5 @@ class ViewStudentDetailsViewModel(private val studentRepository: StudentReposito
 
     fun getStudentWithDetails(studentId: Long) = studentRepository.getStudentWithDetails(studentId)
 
+    fun getStudentWIthCourses(studentId: Long) = studentRepository.getStudentWithCourses(studentId)
 }

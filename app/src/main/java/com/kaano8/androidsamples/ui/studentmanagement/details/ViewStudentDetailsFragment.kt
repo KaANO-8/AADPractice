@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
@@ -32,26 +33,38 @@ class ViewStudentDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewStudentDetailsViewModel.getStudentWithDetails(studentId = args.selectedStudentId).observeForever {
-            Log.d("My details", it.toString() )
-        }
-        viewStudentDetailsViewModel.getStudentWithDetails(args.selectedStudentId).observe(viewLifecycleOwner, { studentWithDetails ->
-            studentWithDetails?.apply {
-                studentIdTextView?.text = student.studentId.toString()
-                firstNameTextView?.text = student.firstName
-                lastNameTextView?.text = student.lastName
-                classTextView?.text = student.currentClass
-                addressTextView?.text = studentDetails?.address
-                phoneNumberTextView?.text = studentDetails?.phoneNumber
+        viewStudentDetailsViewModel.getStudentWithDetails(studentId = args.selectedStudentId)
+            .observeForever {
+                Log.d("My details", it.toString())
             }
-        })
-    }
+        viewStudentDetailsViewModel.getStudentWithDetails(args.selectedStudentId)
+            .observe(viewLifecycleOwner, { studentWithDetails ->
+                studentWithDetails?.apply {
+                    studentIdTextView?.text = student.studentId.toString()
+                    firstNameTextView?.text = student.firstName
+                    lastNameTextView?.text = student.lastName
+                    classTextView?.text = student.currentClass
+                    addressTextView?.text = studentDetails?.address
+                    phoneNumberTextView?.text = studentDetails?.phoneNumber
+                }
+            })
 
+        viewStudentDetailsViewModel.getStudentWIthCourses(args.selectedStudentId)
+            .observe(viewLifecycleOwner, { courseList ->
+                courseList.courses.forEach { course ->
+                    studentDetailsContainer?.addView(TextView(context).also {
+                        it.text = course.courseName
+                    })
+                }
+            })
+    }
 
 
     private fun setupViewModel() {
         val application = requireNotNull(this.activity).application
-        val viewModelFactory = ViewStudentDetailsViewModelFactory(Database.getStudentRepository(application))
-        viewStudentDetailsViewModel = ViewModelProvider(this, viewModelFactory).get(ViewStudentDetailsViewModel::class.java)
+        val viewModelFactory =
+            ViewStudentDetailsViewModelFactory(Database.getStudentRepository(application))
+        viewStudentDetailsViewModel =
+            ViewModelProvider(this, viewModelFactory).get(ViewStudentDetailsViewModel::class.java)
     }
 }

@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.kaano8.androidsamples.database.student.course.Course
 import com.kaano8.androidsamples.database.student.details.StudentDetails
+import com.kaano8.androidsamples.database.student.relation.StudentCourseCrossRef
+import com.kaano8.androidsamples.database.student.relation.StudentWIthCourses
 import com.kaano8.androidsamples.database.student.relation.StudentWithDetails
 
 @Dao
@@ -29,4 +31,10 @@ interface StudentDao {
 
     @Query("Select * from Course")
     fun getAllCourses(): LiveData<List<Course>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertStudentCourse(courseListSelectedByStudent: List<StudentCourseCrossRef>)
+
+    @Query("Select * from Student where studentId = :studentId")
+    fun getStudentWithCourses(studentId: Long): LiveData<StudentWIthCourses>
 }

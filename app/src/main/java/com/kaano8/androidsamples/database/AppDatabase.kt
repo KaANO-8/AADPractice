@@ -15,9 +15,10 @@ import com.kaano8.androidsamples.database.student.Student
 import com.kaano8.androidsamples.database.student.StudentDao
 import com.kaano8.androidsamples.database.student.course.Course
 import com.kaano8.androidsamples.database.student.details.StudentDetails
+import com.kaano8.androidsamples.database.student.relation.StudentCourseCrossRef
 import com.kaano8.androidsamples.workmanager.SeedDatabaseWorker
 
-@Database(entities = [Note::class, Gift::class, Student::class, StudentDetails::class, Course::class], exportSchema = false, version = 1)
+@Database(entities = [Note::class, Gift::class, Student::class, StudentDetails::class, Course::class, StudentCourseCrossRef::class], exportSchema = false, version = 1)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract val noteDatabaseDao: NoteDatabaseDao
