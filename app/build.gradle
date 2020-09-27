@@ -5,7 +5,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "29.0.3"
 
     // necessary to enable data binding
@@ -16,7 +16,7 @@ android {
     defaultConfig {
         applicationId "com.kaano8.androidsamples"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -35,6 +35,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
     }
 }
 
@@ -64,14 +67,21 @@ dependencies {
     // Work Manager
     implementation "androidx.work:work-runtime-ktx:$work_version"
 
-    //GSON
-    implementation "com.google.code.gson:gson:$gsonVersion"
-
     // settings preferences
     implementation "androidx.preference:preference-ktx:$preference_version"
 
+    // retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:retrofit-mock:$retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpLoggingInterceptorVersion"
+    //GSON
+    implementation "com.google.code.gson:gson:$gsonVersion"
+
     // Recycler View
     implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
+    // Paging
+    implementation "androidx.paging:paging-runtime:$pagingVersion"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

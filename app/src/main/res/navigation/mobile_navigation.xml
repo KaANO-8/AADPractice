@@ -143,4 +143,9 @@
             app:argType="long"
             android:defaultValue="-1L" />
     </fragment>
+    <activity
+        android:id="@+id/nav_search_repositories_activity"
+        android:name="com.kaano8.androidsamples.ui.paging.SearchRepositoriesActivity"
+        android:label="activity_search_repositories"
+        tools:layout="@layout/activity_search_repositories" />
 </navigation>

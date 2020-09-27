@@ -25,5 +25,10 @@
             android:id="@+id/nav_student_list"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Student Management" />
+
+        <item
+            android:id="@+id/nav_search_repositories_activity"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Search repositories" />
     </group>
 </menu>
