@@ -17,6 +17,7 @@
 package com.kaano8.androidsamples.ui.paging.adapter.list
 
 import android.view.ViewGroup
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +27,7 @@ import com.kaano8.androidsamples.ui.paging.SearchRepositoriesViewModel.UiModel
 /**
  * Adapter for the list of repositories.
  */
+@OptIn(ExperimentalPagingApi::class)
 class ReposAdapter : PagingDataAdapter<UiModel, RecyclerView.ViewHolder>(UIMODEL_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

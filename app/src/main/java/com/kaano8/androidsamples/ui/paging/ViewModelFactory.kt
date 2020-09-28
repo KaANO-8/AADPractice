@@ -18,12 +18,14 @@ package com.example.android.codelabs.paging.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.paging.ExperimentalPagingApi
 import com.kaano8.androidsamples.repository.paging.GithubRepository
 import com.kaano8.androidsamples.ui.paging.SearchRepositoriesViewModel
 
 /**
  * Factory for ViewModels
  */
+@ExperimentalPagingApi
 class ViewModelFactory(private val repository: GithubRepository) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

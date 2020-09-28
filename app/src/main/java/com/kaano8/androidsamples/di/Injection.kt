@@ -18,6 +18,7 @@ package com.kaano8.androidsamples.di
 
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider
+import androidx.paging.ExperimentalPagingApi
 import com.example.android.codelabs.paging.ui.ViewModelFactory
 import com.kaano8.androidsamples.api.paging.GithubService
 import com.kaano8.androidsamples.database.AppDatabase
@@ -28,6 +29,7 @@ import com.kaano8.androidsamples.repository.paging.GithubRepository
  * Like this, objects can be passed as parameters in the constructors and then replaced for
  * testing, where needed.
  */
+@ExperimentalPagingApi
 object Injection {
 
     private fun provideGithubRepository(context: Context): GithubRepository {
