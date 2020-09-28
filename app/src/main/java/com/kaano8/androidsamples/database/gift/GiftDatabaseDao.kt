@@ -5,7 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.kaano8.androidsamples.database.gift.Gift
+import com.kaano8.androidsamples.models.gift.Gift
 
 @Dao
 interface GiftDatabaseDao {

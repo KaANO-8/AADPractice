@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.kaano8.androidsamples.R
-import com.kaano8.androidsamples.database.note.Note
+import com.kaano8.androidsamples.models.note.Note
 import com.kaano8.androidsamples.database.AppDatabase
 import com.kaano8.androidsamples.repository.NoteRepository
 import com.kaano8.androidsamples.ui.home.adapter.HomeListAdapter

@@ -1,9 +1,9 @@
 package com.kaano8.androidsamples.repository
 
 import androidx.lifecycle.LiveData
-import com.kaano8.androidsamples.database.gift.Gift
+import com.kaano8.androidsamples.models.gift.Gift
 import com.kaano8.androidsamples.database.gift.GiftDatabaseDao
-import com.kaano8.androidsamples.database.note.Note
+import com.kaano8.androidsamples.models.note.Note
 import com.kaano8.androidsamples.database.note.NoteDatabaseDao
 
 class NoteRepository(private val noteDatabaseDao: NoteDatabaseDao, private val giftDatabaseDao: GiftDatabaseDao) {

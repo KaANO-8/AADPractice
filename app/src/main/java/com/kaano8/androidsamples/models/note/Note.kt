@@ -1,10 +1,10 @@
-package com.kaano8.androidsamples.database.note
+package com.kaano8.androidsamples.models.note
 
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.kaano8.androidsamples.database.gift.Gift
+import com.kaano8.androidsamples.models.gift.Gift
 
 @Entity(tableName = "thank_you_note_table")
 data class Note(

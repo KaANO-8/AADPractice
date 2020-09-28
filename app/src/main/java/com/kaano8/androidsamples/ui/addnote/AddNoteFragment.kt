@@ -13,7 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.kaano8.androidsamples.R
 import com.kaano8.androidsamples.database.AppDatabase
-import com.kaano8.androidsamples.database.gift.Gift
+import com.kaano8.androidsamples.models.gift.Gift
 import com.kaano8.androidsamples.repository.NoteRepository
 import kotlinx.android.synthetic.main.fragment_add_note.*
 

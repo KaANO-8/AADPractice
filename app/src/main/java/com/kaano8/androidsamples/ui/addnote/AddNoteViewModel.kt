@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kaano8.androidsamples.database.gift.Gift
-import com.kaano8.androidsamples.database.note.Note
+import com.kaano8.androidsamples.models.gift.Gift
+import com.kaano8.androidsamples.models.note.Note
 import com.kaano8.androidsamples.repository.NoteRepository
 import kotlinx.coroutines.*
 

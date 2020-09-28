@@ -1,4 +1,4 @@
-package com.kaano8.androidsamples.database.gift
+package com.kaano8.androidsamples.models.gift
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

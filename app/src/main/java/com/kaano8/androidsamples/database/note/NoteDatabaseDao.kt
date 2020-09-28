@@ -2,7 +2,7 @@ package com.kaano8.androidsamples.database.note
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.kaano8.androidsamples.database.note.Note
+import com.kaano8.androidsamples.models.note.Note
 
 @Dao
 interface NoteDatabaseDao {
