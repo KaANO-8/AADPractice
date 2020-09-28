@@ -11,6 +11,7 @@ import com.kaano8.androidsamples.models.gift.Gift
 import com.kaano8.androidsamples.database.gift.GiftDatabaseDao
 import com.kaano8.androidsamples.models.note.Note
 import com.kaano8.androidsamples.database.note.NoteDatabaseDao
+import com.kaano8.androidsamples.database.paging.RemoteKeysDao
 import com.kaano8.androidsamples.models.paging.RemoteKeys
 import com.kaano8.androidsamples.database.paging.RepoDao
 import com.kaano8.androidsamples.database.student.Student
@@ -35,6 +36,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract val studentDao: StudentDao
 
     abstract val repoDao: RepoDao
+
+    abstract fun remoteKeysDao(): RemoteKeysDao
 
     companion object {
         @Volatile
