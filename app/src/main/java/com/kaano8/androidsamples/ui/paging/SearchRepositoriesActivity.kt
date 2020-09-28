@@ -20,17 +20,24 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import com.kaano8.androidsamples.databinding.ActivitySearchRepositoriesBinding
 import com.kaano8.androidsamples.di.Injection
-import com.kaano8.androidsamples.models.paging.RepoSearchResult
+import com.kaano8.androidsamples.ui.paging.adapter.list.ReposAdapter
+import com.kaano8.androidsamples.ui.paging.adapter.state.ReposLoadStateAdapter
+import com.kaano8.androidsamples.util.extensions.showToast
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChangedBy
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.launch
 
 @ExperimentalCoroutinesApi
 class SearchRepositoriesActivity : AppCompatActivity() {
@@ -38,6 +45,19 @@ class SearchRepositoriesActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchRepositoriesBinding
     private lateinit var viewModel: SearchRepositoriesViewModel
     private val adapter = ReposAdapter()
+
+    private var searchJob: Job? = null
+
+    private fun search(query: String) {
+        // Make sure we cancel an existing search job in case a new search job is triggered
+        searchJob?.cancel()
+
+        searchJob = lifecycleScope.launch {
+            viewModel.searchRepo(query).collectLatest {
+                adapter.submitData(pagingData = it)
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,19 +67,18 @@ class SearchRepositoriesActivity : AppCompatActivity() {
 
         // get the view model
         viewModel = ViewModelProvider(this, Injection.provideViewModelFactory())
-                .get(SearchRepositoriesViewModel::class.java)
+            .get(SearchRepositoriesViewModel::class.java)
 
         // add dividers between RecyclerView's row items
         val decoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         binding.list.addItemDecoration(decoration)
-        setupScrollListener()
 
         initAdapter()
         val query = savedInstanceState?.getString(LAST_SEARCH_QUERY) ?: DEFAULT_QUERY
-        if (viewModel.repoResult.value == null) {
-            viewModel.searchRepo(query)
-        }
+        search(query)
         initSearch(query)
+
+        binding.retryButton.setOnClickListener { adapter.retry() }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -68,21 +87,29 @@ class SearchRepositoriesActivity : AppCompatActivity() {
     }
 
     private fun initAdapter() {
-        binding.list.adapter = adapter
-        viewModel.repoResult.observe(this) { result ->
-            when (result) {
-                is RepoSearchResult.Success -> {
-                    showEmptyList(result.data.isEmpty())
-                    adapter.submitList(result.data)
-                }
-                is RepoSearchResult.Error -> {
-                    Toast.makeText(
-                            this,
-                            "\uD83D\uDE28 Wooops $result.message}",
-                            Toast.LENGTH_LONG
-                    ).show()
-                }
+        binding.list.adapter =
+            adapter.withLoadStateHeaderAndFooter(
+                header = ReposLoadStateAdapter { adapter.retry() },
+                footer = ReposLoadStateAdapter { adapter.retry() }
+            )
+
+        adapter.addLoadStateListener { combinedLoadStates ->
+            binding.list.isVisible = combinedLoadStates.source.refresh is LoadState.NotLoading
+
+            binding.progressBar.isVisible = combinedLoadStates.source.refresh is LoadState.Loading
+
+            binding.retryButton.isVisible = combinedLoadStates.source.refresh is LoadState.Error
+
+
+            with(combinedLoadStates) {
+                val errorState = source.append as? LoadState.Error
+                    ?: source.prepend as? LoadState.Error
+                    ?: append as? LoadState.Error
+                    ?: prepend as? LoadState.Error
+
+                errorState?.let { showToast("\uD83D\uDE28 Wooops ${it.error}") }
             }
+
         }
     }
 
@@ -105,39 +132,22 @@ class SearchRepositoriesActivity : AppCompatActivity() {
                 false
             }
         }
+
+        lifecycleScope.launch {
+            adapter.loadStateFlow
+                // Only emit when REFRESH LoadState changes.
+                .distinctUntilChangedBy { it.refresh }
+                .filter { it.refresh is LoadState.NotLoading }
+                .collect { binding.list.scrollToPosition(0) }
+        }
     }
 
     private fun updateRepoListFromInput() {
         binding.searchRepo.text.trim().let {
             if (it.isNotEmpty()) {
-                binding.list.scrollToPosition(0)
-                viewModel.searchRepo(it.toString())
+                search(query = it.toString())
             }
         }
-    }
-
-    private fun showEmptyList(show: Boolean) {
-        if (show) {
-            binding.emptyList.visibility = View.VISIBLE
-            binding.list.visibility = View.GONE
-        } else {
-            binding.emptyList.visibility = View.GONE
-            binding.list.visibility = View.VISIBLE
-        }
-    }
-
-    private fun setupScrollListener() {
-        val layoutManager = binding.list.layoutManager as LinearLayoutManager
-        binding.list.addOnScrollListener(object : OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                val totalItemCount = layoutManager.itemCount
-                val visibleItemCount = layoutManager.childCount
-                val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
-
-                viewModel.listScrolled(visibleItemCount, lastVisibleItem, totalItemCount)
-            }
-        })
     }
 
     companion object {

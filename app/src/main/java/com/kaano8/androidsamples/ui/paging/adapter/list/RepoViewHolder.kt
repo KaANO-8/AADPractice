@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.kaano8.androidsamples.ui.paging
+package com.kaano8.androidsamples.ui.paging.adapter.list
 
 import android.content.Intent
 import android.net.Uri

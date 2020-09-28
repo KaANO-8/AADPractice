@@ -16,7 +16,7 @@ buildscript {
         materail_version = "1.2.1"
         retrofitVersion = "2.9.0"
         okhttpLoggingInterceptorVersion = "4.9.0"
-        pagingVersion = "2.1.2"
+        pagingVersion = "3.0.0-alpha06"
     }
     repositories {
         google()

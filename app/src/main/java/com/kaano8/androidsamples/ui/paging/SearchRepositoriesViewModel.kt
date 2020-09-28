@@ -16,47 +16,69 @@
 
 package com.kaano8.androidsamples.ui.paging
 
-import androidx.lifecycle.*
-import com.kaano8.androidsamples.models.paging.RepoSearchResult
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import androidx.paging.insertSeparators
+import androidx.paging.map
 import com.kaano8.androidsamples.repository.paging.GithubRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 /**
  * ViewModel for the [SearchRepositoriesActivity] screen.
  * The ViewModel works with the [GithubRepository] to get the data.
  */
-@ExperimentalCoroutinesApi
 class SearchRepositoriesViewModel(private val repository: GithubRepository) : ViewModel() {
 
-    companion object {
-        private const val VISIBLE_THRESHOLD = 5
-    }
+    private var currentQueryValue: String? = null
 
-    private val queryLiveData = MutableLiveData<String>()
-    val repoResult: LiveData<RepoSearchResult> = queryLiveData.switchMap { queryString ->
-        liveData {
-            val repos = repository.getSearchResultStream(queryString).asLiveData(Dispatchers.Main)
-            emitSource(repos)
-        }
-    }
+    private var currentSearchResults: Flow<PagingData<UiModel>>? = null
 
-    /**
-     * Search a repository based on a query string.
-     */
-    fun searchRepo(queryString: String) {
-        queryLiveData.postValue(queryString)
-    }
+    private val UiModel.RepoItem.roundedStarCount: Int
+        get() = this.repo.stars / 10_000
 
-    fun listScrolled(visibleItemCount: Int, lastVisibleItemPosition: Int, totalItemCount: Int) {
-        if (visibleItemCount + lastVisibleItemPosition + VISIBLE_THRESHOLD >= totalItemCount) {
-            val immutableQuery = queryLiveData.value
-            if (immutableQuery != null) {
-                viewModelScope.launch {
-                    repository.requestMore(immutableQuery)
+    fun searchRepo(queryString: String): Flow<PagingData<UiModel>> {
+        val lastResult = currentSearchResults
+        if (queryString == currentQueryValue && lastResult != null)
+            return lastResult
+
+        currentQueryValue = queryString
+        val newResult: Flow<PagingData<UiModel>> = repository.getSearchResultStream(queryString)
+            .map { pagingData -> pagingData.map {  repo -> UiModel.RepoItem(repo) } }
+            .map {
+                it.insertSeparators<UiModel.RepoItem, UiModel> { before, after ->
+                    if (after == null) {
+                        // We're at the end of the list
+                        return@insertSeparators null
+                    }
+
+                    if (before == null) {
+                        // we're at the beginning of the list
+                        return@insertSeparators UiModel.SeparatorItem("${after.roundedStarCount}0.000+ stars")
+                    }
+
+                    if (before.roundedStarCount > after.roundedStarCount) {
+                        if (after.roundedStarCount >= 1) {
+                            UiModel.SeparatorItem("${after.roundedStarCount}0.000 + stats")
+                        } else {
+                            UiModel.SeparatorItem("< 10.000+ stars")
+                        }
+                    } else {
+                        // no separator
+                        null
+                    }
                 }
             }
-        }
+            .cachedIn(viewModelScope)
+        currentSearchResults = newResult
+        return newResult
+    }
+
+    sealed class UiModel {
+        data class RepoItem(val repo: com.kaano8.androidsamples.models.paging.Repo) : UiModel()
+        data class SeparatorItem(val description: String) : UiModel()
     }
 }
