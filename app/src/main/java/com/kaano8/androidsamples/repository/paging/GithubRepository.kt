@@ -16,10 +16,13 @@
 
 package com.kaano8.androidsamples.repository.paging
 
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.kaano8.androidsamples.api.paging.GithubService
+import com.kaano8.androidsamples.data.GithubRemoteMediator
+import com.kaano8.androidsamples.database.AppDatabase
 import com.kaano8.androidsamples.models.paging.Repo
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -28,17 +31,25 @@ import kotlinx.coroutines.flow.Flow
  * Repository class that works with local and remote data sources.
  */
 @ExperimentalCoroutinesApi
-class GithubRepository(private val service: GithubService) {
+class GithubRepository(private val service: GithubService, private val database: AppDatabase) {
+
     /**
      * Search repositories whose names match the query, exposed as a stream of data that will emit
      * every time we get more data from the network.
      */
-     fun getSearchResultStream(query: String): Flow<PagingData<Repo>> {
+    @ExperimentalPagingApi
+    fun getSearchResultStream(query: String): Flow<PagingData<Repo>> {
+        // appending '%' so we can allow other characters to be before and after the query string
+        val dbQuery = "%${query.replace(' ', '%')}%"
+        val pagingSourceFactory = { database.repoDao.reposByName(dbQuery) }
+
         return Pager(
             config = PagingConfig(
                 pageSize = NETWORK_PAGE_SIZE,
                 enablePlaceholders = false
-            ), pagingSourceFactory = { GithubPagingSource(githubService = service, query) }).flow
+            ), remoteMediator = GithubRemoteMediator(dbQuery, service, database),
+            pagingSourceFactory = pagingSourceFactory
+        ).flow
     }
 
     companion object {

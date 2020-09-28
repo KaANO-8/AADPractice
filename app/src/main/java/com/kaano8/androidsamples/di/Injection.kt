@@ -16,9 +16,11 @@
 
 package com.kaano8.androidsamples.di
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import com.example.android.codelabs.paging.ui.ViewModelFactory
 import com.kaano8.androidsamples.api.paging.GithubService
+import com.kaano8.androidsamples.database.AppDatabase
 import com.kaano8.androidsamples.repository.paging.GithubRepository
 
 /**
@@ -28,19 +30,11 @@ import com.kaano8.androidsamples.repository.paging.GithubRepository
  */
 object Injection {
 
-    /**
-     * Creates an instance of [GithubRepository] based on the [GithubService] and a
-     * [GithubLocalCache]
-     */
-    private fun provideGithubRepository(): GithubRepository {
-        return GithubRepository(GithubService.create())
+    private fun provideGithubRepository(context: Context): GithubRepository {
+        return GithubRepository(GithubService.create(), AppDatabase.getInstance(context))
     }
 
-    /**
-     * Provides the [ViewModelProvider.Factory] that is then used to get a reference to
-     * [ViewModel] objects.
-     */
-    fun provideViewModelFactory(): ViewModelProvider.Factory {
-        return ViewModelFactory(provideGithubRepository())
+    fun provideViewModelFactory(context: Context): ViewModelProvider.Factory {
+        return ViewModelFactory(provideGithubRepository(context))
     }
 }
