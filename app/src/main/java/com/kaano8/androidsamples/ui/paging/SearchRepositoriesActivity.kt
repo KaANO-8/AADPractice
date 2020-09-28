@@ -18,12 +18,12 @@ package com.kaano8.androidsamples.ui.paging
 
 import android.os.Bundle
 import android.view.KeyEvent
-import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.kaano8.androidsamples.databinding.ActivitySearchRepositoriesBinding
@@ -39,6 +39,7 @@ import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 
+@ExperimentalPagingApi
 @ExperimentalCoroutinesApi
 class SearchRepositoriesActivity : AppCompatActivity() {
 
@@ -59,6 +60,7 @@ class SearchRepositoriesActivity : AppCompatActivity() {
         }
     }
 
+    @ExperimentalPagingApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchRepositoriesBinding.inflate(layoutInflater)

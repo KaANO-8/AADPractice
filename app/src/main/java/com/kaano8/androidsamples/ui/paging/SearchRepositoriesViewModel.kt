@@ -18,10 +18,7 @@ package com.kaano8.androidsamples.ui.paging
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
-import androidx.paging.insertSeparators
-import androidx.paging.map
+import androidx.paging.*
 import com.kaano8.androidsamples.repository.paging.GithubRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -31,6 +28,7 @@ import kotlinx.coroutines.flow.map
  * ViewModel for the [SearchRepositoriesActivity] screen.
  * The ViewModel works with the [GithubRepository] to get the data.
  */
+@ExperimentalPagingApi
 class SearchRepositoriesViewModel(private val repository: GithubRepository) : ViewModel() {
 
     private var currentQueryValue: String? = null

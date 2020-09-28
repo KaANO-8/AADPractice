@@ -47,7 +47,7 @@ class GithubRepository(private val service: GithubService, private val database:
             config = PagingConfig(
                 pageSize = NETWORK_PAGE_SIZE,
                 enablePlaceholders = false
-            ), remoteMediator = GithubRemoteMediator(dbQuery, service, database),
+            ), remoteMediator = GithubRemoteMediator(query, service, database),
             pagingSourceFactory = pagingSourceFactory
         ).flow
     }
