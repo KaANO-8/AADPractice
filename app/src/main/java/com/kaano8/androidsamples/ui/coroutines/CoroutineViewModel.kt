@@ -3,10 +3,14 @@ package com.kaano8.androidsamples.ui.coroutines
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.kaano8.androidsamples.repository.coroutines.TitleRefreshCallback
 import com.kaano8.androidsamples.repository.coroutines.TitleRepository
 import com.kaano8.androidsamples.util.BACKGROUND
 import com.kaano8.androidsamples.util.singleArgViewModelFactory
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class CoroutineViewModel(private val repository: TitleRepository) : ViewModel() {
     // TODO: Implement the ViewModel
@@ -72,10 +76,9 @@ class CoroutineViewModel(private val repository: TitleRepository) : ViewModel() 
      * Wait one second then update the tap count.
      */
     private fun updateTaps() {
-        // TODO: Convert updateTaps to use coroutines
-        tapCount++
-        BACKGROUND.submit {
-            Thread.sleep(1_000)
+        viewModelScope.launch {
+            tapCount++
+            delay(1_000)
             _taps.postValue("${tapCount} taps")
         }
     }
@@ -91,17 +94,15 @@ class CoroutineViewModel(private val repository: TitleRepository) : ViewModel() 
      * Refresh the title, showing a loading spinner while it refreshes and errors via snackbar.
      */
     fun refreshTitle() {
-        // TODO: Convert refreshTitle to use coroutines
-        _spinner.value = true
-        repository.refreshTitleWithCallbacks(object : TitleRefreshCallback {
-            override fun onCompleted() {
-                _spinner.postValue(false)
+        viewModelScope.launch {
+            try {
+                _spinner.value = true
+                repository.refreshTitle()
+            } catch (exception: Exception) {
+                _snackBar.value = exception.message
+            } finally {
+                _spinner.value = false
             }
-
-            override fun onError(cause: Throwable) {
-                _snackBar.postValue(cause.message)
-                _spinner.postValue(false)
-            }
-        })
+        }
     }
 }
