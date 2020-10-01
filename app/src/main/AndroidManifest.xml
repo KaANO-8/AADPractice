@@ -41,6 +41,16 @@
             android:authorities="${applicationId}.workmanager-init"
             android:exported="false"
             tools:node="remove" />
+
+        <receiver android:name=".ui.navigation.DeepLinkAppWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/deep_link_appwidget_info" />
+        </receiver>
     </application>
 
 </manifest>
