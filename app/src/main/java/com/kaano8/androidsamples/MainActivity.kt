@@ -42,13 +42,16 @@ class MainActivity : AppCompatActivity() {
                         Intent(CUSTOM_BROADCAST_INTENT)
                     ) }.show()
         }*/
+        setupNavDrawer()
+    }
+
+    private fun setupNavDrawer() {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.nav_home, R.id.nav_add_note, R.id.nav_slideshow, R.id.nav_asyncTask), drawerLayout)
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.nav_home), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }

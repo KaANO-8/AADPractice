@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.onNavDestinationSelected
 import com.google.android.material.snackbar.Snackbar
 import com.kaano8.androidsamples.R
 import com.kaano8.androidsamples.models.note.Note
@@ -61,11 +62,9 @@ class HomeFragment : Fragment() {
             R.id.action_clear_database -> {
                 homeViewModel.clearDatabase()
             }
-            R.id.action_settings -> {
-                findNavController().navigate(HomeFragmentDirections.actionNavHomeToNavSettings())
-            }
         }
-        return super.onOptionsItemSelected(item)
+        // Important init to make nav controller handler navigation
+        return item.onNavDestinationSelected(findNavController()) || super.onOptionsItemSelected(item)
     }
 
     private fun setupViewModel() {
