@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kaano8.androidsamples.models.gift.Gift
 import com.kaano8.androidsamples.models.note.Note
-import com.kaano8.androidsamples.repository.NoteRepository
+import com.kaano8.androidsamples.repository.note.NoteRepository
 import kotlinx.coroutines.*
 
 class AddNoteViewModel(private val noteRepository: NoteRepository) : ViewModel() {

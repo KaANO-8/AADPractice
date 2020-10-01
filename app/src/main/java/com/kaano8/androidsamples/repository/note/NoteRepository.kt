@@ -1,4 +1,4 @@
-package com.kaano8.androidsamples.repository
+package com.kaano8.androidsamples.repository.note
 
 import androidx.lifecycle.LiveData
 import com.kaano8.androidsamples.models.gift.Gift

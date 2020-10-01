@@ -2,7 +2,7 @@ package com.kaano8.androidsamples.ui.addnote
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.kaano8.androidsamples.repository.NoteRepository
+import com.kaano8.androidsamples.repository.note.NoteRepository
 
 @Suppress("UNCHECKED_CAST")
 class AddNoteViewModelFactory(

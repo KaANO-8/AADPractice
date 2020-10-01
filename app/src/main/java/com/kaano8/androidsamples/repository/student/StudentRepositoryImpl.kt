@@ -1,6 +1,8 @@
 package com.kaano8.androidsamples.repository.student
 
+import android.util.Log
 import androidx.lifecycle.LiveData
+import com.kaano8.androidsamples.api.jokes.JokesService
 import com.kaano8.androidsamples.database.student.Student
 import com.kaano8.androidsamples.database.student.StudentDao
 import com.kaano8.androidsamples.database.student.course.Course
@@ -9,7 +11,7 @@ import com.kaano8.androidsamples.database.student.relation.StudentCourseCrossRef
 import com.kaano8.androidsamples.database.student.relation.StudentWIthCourses
 import com.kaano8.androidsamples.database.student.relation.StudentWithDetails
 
-class StudentRepositoryImpl(private val studentDao: StudentDao): StudentRepository {
+class StudentRepositoryImpl(private val studentDao: StudentDao, private val jokesService: JokesService): StudentRepository {
 
     override suspend fun addStudent(student: Student) {
         studentDao.insertStudent(student)
@@ -30,4 +32,15 @@ class StudentRepositoryImpl(private val studentDao: StudentDao): StudentReposito
     }
 
     override fun getStudentWithCourses(studentId: Long): LiveData<StudentWIthCourses> = studentDao.getStudentWithCourses(studentId)
+
+
+    override suspend fun getAJoke() {
+        try {
+            val joke = jokesService.getAJoke()
+            val student = Student(firstName = joke.setup, lastName = joke.delivery, currentClass = joke.category)
+            studentDao.insertStudent(student)
+        } catch (exception: Exception) {
+            Log.d("Exception occurred", exception.message.toString())
+        }
+    }
 }

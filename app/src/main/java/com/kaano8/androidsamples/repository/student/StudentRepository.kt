@@ -23,4 +23,6 @@ interface StudentRepository {
     suspend fun insertSelectedCourses(selectedCourses: List<StudentCourseCrossRef>)
 
     fun getStudentWithCourses(studentId: Long): LiveData<StudentWIthCourses>
+
+    suspend fun getAJoke()
 }

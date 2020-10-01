@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -34,6 +35,14 @@ class StudentListFragment : Fragment() {
         addNewStudentFab?.setOnClickListener {
             findNavController().navigate(StudentListFragmentDirections.actionNavStudentListToNavAddStudent())
         }
+
+        addNewJokeFab?.setOnClickListener {
+            studentListViewModel.insertAJoke()
+        }
+
+        studentListViewModel.spinnerVisibility.observe(viewLifecycleOwner, {
+            studentListProgressBar?.isVisible = it
+        })
     }
 
     private fun setupRecyclerView() {

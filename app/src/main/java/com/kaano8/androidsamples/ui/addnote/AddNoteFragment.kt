@@ -14,7 +14,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.kaano8.androidsamples.R
 import com.kaano8.androidsamples.database.AppDatabase
 import com.kaano8.androidsamples.models.gift.Gift
-import com.kaano8.androidsamples.repository.NoteRepository
+import com.kaano8.androidsamples.repository.note.NoteRepository
 import kotlinx.android.synthetic.main.fragment_add_note.*
 
 class AddNoteFragment : Fragment() {

@@ -10,7 +10,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.kaano8.androidsamples.R
 import com.kaano8.androidsamples.models.note.Note
 import com.kaano8.androidsamples.database.AppDatabase
-import com.kaano8.androidsamples.repository.NoteRepository
+import com.kaano8.androidsamples.repository.note.NoteRepository
 import com.kaano8.androidsamples.ui.home.adapter.HomeListAdapter
 import com.kaano8.androidsamples.ui.home.adapter.NoteListItemClickListener
 import kotlinx.android.synthetic.main.fragment_home.*
