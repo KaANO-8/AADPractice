@@ -42,13 +42,11 @@ class StudentEntityReadWriteTest {
         studentDao = database.studentDao
     }
 
-
     @After
     @Throws(IOException::class)
     fun closeDb() {
         database.close()
     }
-
 
     @Test
     fun insertStudent() = runBlockingTest {
