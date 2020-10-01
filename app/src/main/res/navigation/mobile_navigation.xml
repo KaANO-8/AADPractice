@@ -125,8 +125,8 @@
             app:popUpToInclusive="true" />
         <argument
             android:name="selectedStudentId"
-            app:argType="long"
-            android:defaultValue="-1L" />
+            android:defaultValue="-1L"
+            app:argType="long" />
     </fragment>
 
     <fragment
@@ -136,8 +136,8 @@
         tools:layout="@layout/fragment_view_student_details">
         <argument
             android:name="selectedStudentId"
-            app:argType="long"
-            android:defaultValue="-1L" />
+            android:defaultValue="-1L"
+            app:argType="long" />
     </fragment>
     <activity
         android:id="@+id/nav_search_repositories_activity"
@@ -156,4 +156,16 @@
         android:name="com.kaano8.androidsamples.ui.coroutines.CoroutineFragment"
         android:label="Coroutine Samples"
         tools:layout="@layout/coroutine_fragment" />
+
+    <fragment
+        android:id="@+id/deeplink_dest"
+        android:name="com.kaano8.androidsamples.ui.navigation.DeepLinkFragment"
+        android:label="Deep Link"
+        tools:layout="@layout/deeplink_fragment">
+
+        <argument
+            android:name="myarg"
+            android:defaultValue="Android!" />
+
+    </fragment>
 </navigation>

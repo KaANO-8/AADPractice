@@ -59,6 +59,8 @@
     <string name="add_student_details">Add student details</string>
     <string name="available_courses">Available Courses</string>
     <string name="click_to_start">Click to start</string>
+    <string name="deep_link_instructions">Type your deep link args</string>
+    <string name="send_deep_link_notification_button">Send deep link notification</string>
 
     <!-- Custom view-->
     <string name="fan_off">off</string>
