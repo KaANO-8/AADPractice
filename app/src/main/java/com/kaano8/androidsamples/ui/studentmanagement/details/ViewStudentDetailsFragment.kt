@@ -33,10 +33,6 @@ class ViewStudentDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewStudentDetailsViewModel.getStudentWithDetails(studentId = args.selectedStudentId)
-            .observeForever {
-                Log.d("My details", it.toString())
-            }
         viewStudentDetailsViewModel.getStudentWithDetails(args.selectedStudentId)
             .observe(viewLifecycleOwner, { studentWithDetails ->
                 studentWithDetails?.apply {
