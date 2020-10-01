@@ -35,5 +35,10 @@
             android:id="@+id/nav_custom_view"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Custom view" />
+
+        <item
+            android:id="@+id/nav_coroutine_sample"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Coroutine Sample" />
     </group>
 </menu>

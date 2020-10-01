@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.kaano8.androidsamples">
 
     <application
+        android:name=".AndroidSamplesApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,6 +19,7 @@
         <service
             android:name=".ui.backgroundservices.jobscheduler.NotificationJobService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
+
         <service
             android:name=".ui.backgroundservices.jobscheduler.AsyncTaskJobScheduler"
             android:permission="android.permission.BIND_JOB_SERVICE" />
@@ -32,6 +35,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.paging.SearchRepositoriesActivity" />
+
+        <provider
+            android:name="androidx.work.impl.WorkManagerInitializer"
+            android:authorities="${applicationId}.workmanager-init"
+            android:exported="false"
+            tools:node="remove" />
     </application>
 
 </manifest>

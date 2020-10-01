@@ -58,6 +58,7 @@
     <string name="enter_phone_number">Enter phone number</string>
     <string name="add_student_details">Add student details</string>
     <string name="available_courses">Available Courses</string>
+    <string name="click_to_start">Click to start</string>
 
     <!-- Custom view-->
     <string name="fan_off">off</string>

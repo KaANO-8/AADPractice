@@ -154,4 +154,10 @@
         android:name="com.kaano8.androidsamples.ui.customview.CustomViewFragment"
         android:label="Custom view"
         tools:layout="@layout/fragment_custom_view" />
+
+    <fragment
+        android:id="@+id/nav_coroutine_sample"
+        android:name="com.kaano8.androidsamples.ui.coroutines.CoroutineFragment"
+        android:label="Coroutine Samples"
+        tools:layout="@layout/coroutine_fragment" />
 </navigation>
