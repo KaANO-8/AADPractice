@@ -57,4 +57,12 @@
         android:textSize="18sp"
         android:layout_marginBottom="8dp"/>
 
+    <Button
+        android:id="@+id/updateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Details"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
 </LinearLayout>

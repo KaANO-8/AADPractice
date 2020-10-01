@@ -1,7 +1,6 @@
 package com.kaano8.androidsamples.ui.studentmanagement.details
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.kaano8.androidsamples.R
-import com.kaano8.androidsamples.ui.studentmanagement.add.details.AddStudentDetailsFragmentArgs
 import com.kaano8.androidsamples.util.extensions.Database
 import kotlinx.android.synthetic.main.fragment_view_student_details.*
 
@@ -53,6 +51,10 @@ class ViewStudentDetailsFragment : Fragment() {
                     })
                 }
             })
+
+        updateButton?.setOnClickListener {
+            viewStudentDetailsViewModel.updateStudentDetails(args.selectedStudentId)
+        }
     }
 
 
