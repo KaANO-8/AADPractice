@@ -55,5 +55,6 @@ class StudentEntityReadWriteTest {
 
         val firstStudent = studentDao.getAllStudents().getOrAwaitValue().first()
         assertThat(firstStudent.firstName, equalTo("Rahul"))
+        assertThat(firstStudent.lastName, equalTo("Kanojia"))
     }
 }
