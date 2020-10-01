@@ -11,7 +11,10 @@ import com.kaano8.androidsamples.database.student.relation.StudentWithDetails
 @Dao
 interface StudentDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertStudent(student: Student)
+    suspend fun insertStudent(student: Student)
+
+    @Update
+    suspend fun updateStudent(student: Student)
 
     @Query("Select * from Student")
     fun getAllStudents(): LiveData<List<Student>>
@@ -37,4 +40,7 @@ interface StudentDao {
 
     @Query("Select * from Student where studentId = :studentId")
     fun getStudentWithCourses(studentId: Long): LiveData<StudentWIthCourses>
+
+    @Query("Delete from Student")
+    suspend fun clearDatabase()
 }

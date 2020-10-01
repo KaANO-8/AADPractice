@@ -12,6 +12,8 @@ interface StudentRepository {
 
     suspend fun addStudent(student: Student)
 
+    suspend fun updateStudent(student: Student)
+
     fun getAllStudents(): LiveData<List<Student>>
 
     suspend fun addStudentDetails(studentDetails: StudentDetails)
@@ -25,4 +27,6 @@ interface StudentRepository {
     fun getStudentWithCourses(studentId: Long): LiveData<StudentWIthCourses>
 
     suspend fun getAJoke()
+
+    suspend fun clearDatabase()
 }

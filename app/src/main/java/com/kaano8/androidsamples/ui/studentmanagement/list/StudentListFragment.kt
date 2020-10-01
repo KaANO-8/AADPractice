@@ -1,9 +1,7 @@
 package com.kaano8.androidsamples.ui.studentmanagement.list
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -18,6 +16,12 @@ import kotlinx.android.synthetic.main.fragment_student_list.*
 class StudentListFragment : Fragment() {
 
     private lateinit var studentListViewModel: StudentListViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // Very important line if you want to show menu in fragment
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +48,21 @@ class StudentListFragment : Fragment() {
             studentListProgressBar?.isVisible = it
         })
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.clear_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_clear -> {
+                studentListViewModel.clearDatabase()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 
     private fun setupRecyclerView() {
         val studentListAdapter = StudentListAdapter(object : OnStudentItemClickListener {

@@ -17,6 +17,10 @@ class StudentRepositoryImpl(private val studentDao: StudentDao, private val joke
         studentDao.insertStudent(student)
     }
 
+    override suspend fun updateStudent(student: Student) {
+        studentDao.updateStudent(student)
+    }
+
     override fun getAllStudents(): LiveData<List<Student>> = studentDao.getAllStudents()
 
     override suspend fun addStudentDetails(studentDetails: StudentDetails) {
@@ -42,5 +46,9 @@ class StudentRepositoryImpl(private val studentDao: StudentDao, private val joke
         } catch (exception: Exception) {
             Log.d("Exception occurred", exception.message.toString())
         }
+    }
+
+    override suspend fun clearDatabase() {
+        studentDao.clearDatabase()
     }
 }

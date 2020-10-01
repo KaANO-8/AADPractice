@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kaano8.androidsamples.database.student.Student
 import com.kaano8.androidsamples.repository.student.StudentRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class StudentListViewModel(private val studentRepository: StudentRepository): ViewModel() {
 
@@ -22,6 +24,12 @@ class StudentListViewModel(private val studentRepository: StudentRepository): Vi
             _spinnerVisibility.value = true
             studentRepository.getAJoke()
             _spinnerVisibility.value = false
+        }
+    }
+
+    fun clearDatabase() {
+        viewModelScope.launch {
+            studentRepository.clearDatabase()
         }
     }
 }
