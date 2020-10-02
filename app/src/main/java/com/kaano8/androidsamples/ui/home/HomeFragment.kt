@@ -38,6 +38,10 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
 
+        addNNewNote?.setOnClickListener {
+
+        }
+
         homeViewModel.clearDatabaseSnackBarEvent.observe(
             viewLifecycleOwner,
             Observer { didEventOccur ->

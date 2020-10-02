@@ -32,12 +32,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.kaano8.androidsamples.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
-
-    <fragment
         android:id="@+id/nav_asyncTask"
         android:name="com.kaano8.androidsamples.ui.backgroundservices.asynctask.AsyncTaskFragment"
         android:label="Async task"

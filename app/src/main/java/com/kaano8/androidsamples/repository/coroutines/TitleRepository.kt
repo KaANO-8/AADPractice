@@ -67,8 +67,3 @@ class TitleRepository(val network: MainNetwork, val titleDao: TitleDao) {
  * @property cause the original cause of this exception
  */
 class TitleRefreshError(message: String, cause: Throwable?) : Throwable(message, cause)
-
-interface TitleRefreshCallback {
-    fun onCompleted()
-    fun onError(cause: Throwable)
-}

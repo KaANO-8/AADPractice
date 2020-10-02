@@ -5,40 +5,23 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
-        <item
             android:id="@+id/nav_add_note"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_add_note" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
-        <item
-            android:id="@+id/nav_background_services"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_background_services" />
-
-        <item
-            android:id="@+id/nav_student_list"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Student Management" />
 
         <item
             android:id="@+id/nav_search_repositories_activity"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Search repositories" />
+            android:title="@string/search_repositories" />
 
         <item
             android:id="@+id/nav_custom_view"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Custom view" />
+            android:title="@string/custom_view" />
 
         <item
             android:id="@+id/nav_coroutine_sample"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Coroutine Sample" />
+            android:title="@string/coroutine_sample" />
     </group>
 </menu>

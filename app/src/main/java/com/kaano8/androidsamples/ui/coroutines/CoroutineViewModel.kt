@@ -4,13 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kaano8.androidsamples.repository.coroutines.TitleRefreshCallback
 import com.kaano8.androidsamples.repository.coroutines.TitleRepository
-import com.kaano8.androidsamples.util.BACKGROUND
 import com.kaano8.androidsamples.util.singleArgViewModelFactory
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class CoroutineViewModel(private val repository: TitleRepository) : ViewModel() {
     // TODO: Implement the ViewModel
