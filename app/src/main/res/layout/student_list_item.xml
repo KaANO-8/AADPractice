@@ -12,9 +12,8 @@
         android:layout_height="wrap_content"
         android:text="@string/student_id"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/firstNameLabel"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/editButton" />
+        app:layout_constraintTop_toTopOf="@+id/studentIdValue" />
 
     <TextView
         android:id="@+id/studentIdValue"
@@ -23,10 +22,9 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/firstNameValue"
         app:layout_constraintStart_toEndOf="@+id/studentIdLabel"
-        app:layout_constraintEnd_toStartOf="@+id/editDetailsButton"
-        app:layout_constraintTop_toTopOf="@id/editButton"
+        app:layout_constraintStart_toStartOf="@+id/firstNameValue"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="1" />
-
 
     <TextView
         android:id="@+id/firstNameLabel"
@@ -34,19 +32,17 @@
         android:layout_height="wrap_content"
         android:text="@string/first_name"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/lastNameLabel"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/studentIdLabel" />
+        app:layout_constraintTop_toTopOf="@+id/firstNameValue" />
 
     <TextView
         android:id="@+id/firstNameValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/lastNameValue"
         app:layout_constraintStart_toEndOf="@+id/firstNameLabel"
         app:layout_constraintTop_toBottomOf="@id/studentIdValue"
-        app:layout_constraintEnd_toStartOf="@+id/editDetailsButton"
         tools:text="Rahul" />
 
     <TextView
@@ -55,19 +51,18 @@
         android:layout_height="wrap_content"
         android:text="@string/last_name"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/classLabel"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/firstNameLabel" />
+        app:layout_constraintTop_toTopOf="@+id/lastNameValue" />
 
     <TextView
         android:id="@+id/lastNameValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/classValue"
         app:layout_constraintStart_toEndOf="@+id/lastNameLabel"
+        app:layout_constraintStart_toStartOf="@+id/firstNameValue"
         app:layout_constraintTop_toBottomOf="@+id/firstNameValue"
-        app:layout_constraintEnd_toStartOf="@+id/editDetailsButton"
         tools:text="Kanojia" />
 
     <TextView
@@ -76,58 +71,41 @@
         android:layout_height="wrap_content"
         android:text="@string/current_class"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/editDetailsButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lastNameLabel" />
+        app:layout_constraintTop_toTopOf="@+id/classValue" />
 
     <TextView
         android:id="@+id/classValue"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/editDetailsButton"
-        app:layout_constraintStart_toEndOf="@+id/classLabel"
-        app:layout_constraintTop_toBottomOf="@+id/lastNameValue"
-        app:layout_constraintEnd_toStartOf="@+id/editDetailsButton"
-        tools:text="12" />
-
-    <Button
-        android:id="@+id/editButton"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="@string/_button_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/editDetailsButton"
-        app:layout_constraintBottom_toTopOf="@+id/editDetailsButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/classLabel"
+        app:layout_constraintStart_toStartOf="@+id/lastNameValue"
+        app:layout_constraintTop_toBottomOf="@+id/lastNameValue"
+        tools:text="12" />
 
     <Button
         android:id="@+id/editDetailsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="@string/edit_details_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editButton" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:icon="@drawable/ic_baseline_edit_24"
+        app:layout_constraintEnd_toStartOf="@+id/viewDetailsButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/classValue" />
 
     <Button
         android:id="@+id/viewDetailsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/editDetailsButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/deleteStudentButton"
         android:text="@string/view_details"
-        android:layout_marginTop="4dp"/>
-
-    <Button
-        android:id="@+id/deleteStudentButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/editDetailsButton"
-        app:layout_constraintStart_toEndOf="@+id/viewDetailsButton"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:icon="@drawable/ic_eye"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Delete student"
-        android:layout_marginTop="4dp"/>
+        app:layout_constraintStart_toEndOf="@+id/editDetailsButton"
+        app:layout_constraintTop_toTopOf="@id/editDetailsButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,7 +26,6 @@ class StudentListAdapter(private val onStudentItemClickListener: OnStudentItemCl
             firstNameText.text = item.firstName
             lastNameText.text = item.lastName
             classText.text = item.currentClass
-            editButton.setOnClickListener { }
             editDetailsButton.setOnClickListener { onStudentItemClickListener.onEditDetailsClicked(item.studentId) }
             viewDetailsButton.setOnClickListener { onStudentItemClickListener.onViewDetailsClicked(item.studentId) }
         }
@@ -37,7 +36,6 @@ class StudentListAdapter(private val onStudentItemClickListener: OnStudentItemCl
         val firstNameText: TextView = view.findViewById(R.id.firstNameValue)
         val lastNameText: TextView = view.findViewById(R.id.lastNameValue)
         val classText: TextView = view.findViewById(R.id.classValue)
-        val editButton: Button = view.findViewById(R.id.editButton)
         val editDetailsButton: Button = view.findViewById(R.id.editDetailsButton)
         val viewDetailsButton: Button = view.findViewById(R.id.viewDetailsButton)
     }
