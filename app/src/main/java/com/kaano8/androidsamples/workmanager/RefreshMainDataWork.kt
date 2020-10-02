@@ -33,7 +33,7 @@ import com.kaano8.androidsamples.repository.coroutines.TitleRepository
  * WorkManager is a library used to enqueue work that is guaranteed to execute after its constraints
  * are met. It can run work even when the app is in the background, or not running.
  */
-class RefreshMainDataWork(context: Context, params: WorkerParameters, private val network: MainNetwork) :
+class RefreshMainDataWork(context: Context, params: WorkerParameters) :
         CoroutineWorker(context, params) {
 
     /**
@@ -45,6 +45,7 @@ class RefreshMainDataWork(context: Context, params: WorkerParameters, private va
      */
     override suspend fun doWork(): Result {
         val database = getDatabase(applicationContext)
+        val network: MainNetwork = getNetworkService()
         val repository = TitleRepository(network, database.titleDao)
 
         return try {
@@ -55,10 +56,9 @@ class RefreshMainDataWork(context: Context, params: WorkerParameters, private va
         }
     }
 
-    class Factory(val network: MainNetwork = getNetworkService()) : WorkerFactory() {
+    /*class Factory(val network: MainNetwork = getNetworkService()) : WorkerFactory() {
         override fun createWorker(appContext: Context, workerClassName: String, workerParameters: WorkerParameters): ListenableWorker? {
             return RefreshMainDataWork(appContext, workerParameters, network)
         }
-
-    }
+    }*/
 }

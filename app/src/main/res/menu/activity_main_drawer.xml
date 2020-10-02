@@ -4,24 +4,20 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_add_note"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_add_note" />
 
         <item
             android:id="@+id/nav_search_repositories_activity"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_baseline_data_usage_24"
             android:title="@string/search_repositories" />
 
         <item
             android:id="@+id/nav_custom_view"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_baseline_view_carousel_24"
             android:title="@string/custom_view" />
 
         <item
             android:id="@+id/nav_coroutine_sample"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_baseline_system_update_24"
             android:title="@string/coroutine_sample" />
     </group>
 </menu>

@@ -7,9 +7,9 @@ import androidx.work.WorkerParameters
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
-import com.kaano8.androidsamples.models.gift.Gift
 import com.kaano8.androidsamples.database.AppDatabase
 import com.kaano8.androidsamples.database.student.course.Course
+import com.kaano8.androidsamples.models.gift.Gift
 import kotlinx.coroutines.coroutineScope
 
 class SeedDatabaseWorker(context: Context, workerParameters: WorkerParameters) :

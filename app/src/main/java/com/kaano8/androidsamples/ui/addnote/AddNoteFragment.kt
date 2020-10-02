@@ -44,6 +44,11 @@ class AddNoteFragment : Fragment() {
             val recipient = recipientEditText?.text?.toString() ?: EMPTY_STRING
             val sender = senderEditText?.text?.toString() ?: EMPTY_STRING
             val note = noteEditText?.text?.toString() ?: EMPTY_STRING
+
+            /**
+             * if spinner is not setup correctly then it wil return position as -1,
+             * so be careful of index out of bound exception
+             */
             val gift = gifts[giftSpinner?.selectedItemPosition ?: 0]
 
             addNoteViewModel.insertOrUpdateNote(args.selectedNoteId, recipient, sender, note, gift)

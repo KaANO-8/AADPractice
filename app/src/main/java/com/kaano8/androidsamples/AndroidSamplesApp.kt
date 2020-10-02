@@ -45,12 +45,12 @@ class AndroidSamplesApp : Application() {
      * Setup WorkManager background job to 'fetch' new network data daily.
      */
     private fun setupWorkManagerJob() {
-        // initialize WorkManager with a Factory
+        /*// initialize WorkManager with a Factory
         val workManagerConfiguration = Configuration.Builder()
                 .setWorkerFactory(RefreshMainDataWork.Factory())
                 .build()
         WorkManager.initialize(this, workManagerConfiguration)
-
+*/
         // Use constraints to require the work only run when the device is charging and the
         // network is unmetered
         val constraints = Constraints.Builder()
@@ -65,7 +65,6 @@ class AndroidSamplesApp : Application() {
 
         // Enqueue it work WorkManager, keeping any previously scheduled jobs for the same
         // work.
-        WorkManager.getInstance(this)
-                .enqueueUniquePeriodicWork(RefreshMainDataWork::class.java.name, KEEP, work)
+        WorkManager.getInstance(this).enqueueUniquePeriodicWork(RefreshMainDataWork::class.java.name, KEEP, work)
     }
 }
