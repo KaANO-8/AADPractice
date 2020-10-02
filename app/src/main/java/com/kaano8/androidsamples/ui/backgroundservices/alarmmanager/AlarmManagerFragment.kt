@@ -47,7 +47,7 @@ class AlarmManagerFragment : Fragment() {
             )
         }
 
-        val alarmUp = PendingIntent.getBroadcast(activity?.baseContext, NOTIFICATION_ID, Intent(activity?.baseContext, AlarmReceiver::class.java), PendingIntent.FLAG_NO_CREATE) != null
+        val alarmUp = PendingIntent.getBroadcast(requireContext(), NOTIFICATION_ID, Intent(requireContext(), AlarmReceiver::class.java), PendingIntent.FLAG_NO_CREATE) != null
 
         alarmManagerToggle?.isChecked = alarmUp
 
@@ -63,9 +63,9 @@ class AlarmManagerFragment : Fragment() {
     }
 
     private fun setupAlarm() {
-        notifyPendingIntent =PendingIntent.getBroadcast(activity?.baseContext, NOTIFICATION_ID, Intent(activity?.baseContext, AlarmReceiver::class.java), PendingIntent.FLAG_UPDATE_CURRENT)
+        notifyPendingIntent = PendingIntent.getBroadcast(requireContext(), NOTIFICATION_ID, Intent(requireContext(), AlarmReceiver::class.java), PendingIntent.FLAG_UPDATE_CURRENT)
 
-        alarmManager = activity?.baseContext?.getSystemService(ALARM_SERVICE) as? AlarmManager
+        alarmManager = requireContext().getSystemService(ALARM_SERVICE) as? AlarmManager
 
         alarmManager?.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_FIFTEEN_MINUTES, AlarmManager.INTERVAL_FIFTEEN_MINUTES, notifyPendingIntent)
     }
