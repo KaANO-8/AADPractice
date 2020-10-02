@@ -89,11 +89,11 @@
         android:id="@+id/editDetailsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="@string/edit_details_button"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:icon="@drawable/ic_baseline_edit_24"
         app:layout_constraintEnd_toStartOf="@+id/viewDetailsButton"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/classValue" />
 
@@ -105,7 +105,8 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:icon="@drawable/ic_eye"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/editDetailsButton"
-        app:layout_constraintTop_toTopOf="@id/editDetailsButton" />
+        app:layout_constraintTop_toTopOf="@+id/editDetailsButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
