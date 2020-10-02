@@ -14,6 +14,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.kaano8.androidsamples.ui.backgroundservices.broadcastreceiver.PowerStatusReceiver
+import com.kaano8.androidsamples.ui.studentmanagement.add.UnlockAlarmReceiver.Companion.KEY_LAUNCH_STUDENT_LIST
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -38,6 +39,9 @@ class MainActivity : AppCompatActivity() {
                     ) }.show()
         }*/
         setupNavDrawer()
+
+        if (intent.getBooleanExtra(KEY_LAUNCH_STUDENT_LIST, false))
+            findNavController(R.id.nav_host_fragment).navigate(R.id.nav_student_list)
     }
 
     private fun setupNavDrawer() {

@@ -1,6 +1,11 @@
 package com.kaano8.androidsamples.ui.studentmanagement.add
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.os.SystemClock
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +17,9 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.workDataOf
 import com.kaano8.androidsamples.R
+import com.kaano8.androidsamples.ui.backgroundservices.alarmmanager.AlarmManagerFragment
+import com.kaano8.androidsamples.ui.backgroundservices.alarmmanager.AlarmReceiver
+import com.kaano8.androidsamples.ui.studentmanagement.add.UnlockAlarmReceiver.Companion.UNLOCK_NOTIFICATION_ID
 import com.kaano8.androidsamples.ui.studentmanagement.unlock.UnlockWorker
 import com.kaano8.androidsamples.util.extensions.Database.getStudentRepository
 import kotlinx.android.synthetic.main.fragment_add_student.*
@@ -52,9 +60,20 @@ class AddStudentFragment : Fragment() {
         addStudentViewModel.scheduleWork.observe(viewLifecycleOwner, { data ->
             data?.let {
                 scheduleWorker(data.first, data.second)
+                scheduleAlarm(data.first, data.second)
                 addStudentViewModel.doneScheduling()
             }
         })
+    }
+
+    private fun scheduleAlarm(studentId: Long, duration: Long) {
+        val contentIntent = Intent(requireContext(), UnlockAlarmReceiver::class.java).apply { putExtra(STUDENT_ID_KEY, studentId) }
+
+        val notifyPendingIntent = PendingIntent.getBroadcast(requireContext(), UNLOCK_NOTIFICATION_ID, contentIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val alarmManager = requireContext().getSystemService(Context.ALARM_SERVICE) as? AlarmManager
+
+        alarmManager?.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + duration*1000, notifyPendingIntent)
     }
 
     private fun setupViewModel() {

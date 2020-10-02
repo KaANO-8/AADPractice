@@ -4,7 +4,6 @@ import android.app.AlarmManager
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context.ALARM_SERVICE
-import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
@@ -13,7 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.kaano8.androidsamples.R
-import com.kaano8.androidsamples.util.extensions.createChannel
+import com.kaano8.androidsamples.util.Injector.getNotificationManager
 import com.kaano8.androidsamples.util.extensions.showToast
 import kotlinx.android.synthetic.main.fragment_alarm_manager.*
 
@@ -37,15 +36,7 @@ class AlarmManagerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        notificationManager = activity?.getSystemService(NOTIFICATION_SERVICE) as? NotificationManager
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            notificationManager?.createChannel(
-                PRIMARY_CHANNEL_ID,
-                NOTIFICATION_CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH,
-                NOTIFICATION_CHANNEL_DESCRIPTION
-            )
-        }
+        notificationManager = getNotificationManager(requireContext(), PRIMARY_CHANNEL_ID, NOTIFICATION_CHANNEL_NAME, NOTIFICATION_CHANNEL_DESCRIPTION)
 
         val alarmUp = PendingIntent.getBroadcast(requireContext(), NOTIFICATION_ID, Intent(requireContext(), AlarmReceiver::class.java), PendingIntent.FLAG_NO_CREATE) != null
 

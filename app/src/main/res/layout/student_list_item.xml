@@ -13,7 +13,8 @@
         android:text="@string/student_id"
         style="@style/AppTheme.TextFontFamily"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/studentIdValue" />
+        app:layout_constraintTop_toTopOf="@+id/studentIdValue"
+        tools:viewBindingIgnore="true"/>
 
     <TextView
         android:id="@+id/studentIdValue"
@@ -33,7 +34,8 @@
         android:text="@string/first_name"
         style="@style/AppTheme.TextFontFamily"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/firstNameValue" />
+        app:layout_constraintTop_toTopOf="@+id/firstNameValue"
+        tools:viewBindingIgnore="true"/>
 
     <TextView
         android:id="@+id/firstNameValue"
@@ -52,7 +54,8 @@
         android:text="@string/last_name"
         style="@style/AppTheme.TextFontFamily"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/lastNameValue" />
+        app:layout_constraintTop_toTopOf="@+id/lastNameValue"
+        tools:viewBindingIgnore="true"/>
 
     <TextView
         android:id="@+id/lastNameValue"
@@ -72,7 +75,8 @@
         android:text="@string/current_class"
         style="@style/AppTheme.TextFontFamily"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/classValue" />
+        app:layout_constraintTop_toTopOf="@+id/classValue"
+        tools:viewBindingIgnore="true"/>
 
     <TextView
         android:id="@+id/classValue"
