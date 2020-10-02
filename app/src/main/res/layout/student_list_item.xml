@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/student_id"
-        android:textSize="16sp"
+        style="@style/AppTheme.TextFontFamily"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/studentIdValue" />
 
@@ -19,7 +19,7 @@
         android:id="@+id/studentIdValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
+        style="@style/AppTheme.TextFontFamily"
         app:layout_constraintBottom_toTopOf="@+id/firstNameValue"
         app:layout_constraintStart_toEndOf="@+id/studentIdLabel"
         app:layout_constraintStart_toStartOf="@+id/firstNameValue"
@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/first_name"
-        android:textSize="16sp"
+        style="@style/AppTheme.TextFontFamily"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/firstNameValue" />
 
@@ -40,7 +40,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textSize="16sp"
+        style="@style/AppTheme.TextFontFamily"
         app:layout_constraintStart_toEndOf="@+id/firstNameLabel"
         app:layout_constraintTop_toBottomOf="@id/studentIdValue"
         tools:text="Rahul" />
@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/last_name"
-        android:textSize="16sp"
+        style="@style/AppTheme.TextFontFamily"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/lastNameValue" />
 
@@ -59,7 +59,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textSize="16sp"
+        style="@style/AppTheme.TextFontFamily"
         app:layout_constraintStart_toEndOf="@+id/lastNameLabel"
         app:layout_constraintStart_toStartOf="@+id/firstNameValue"
         app:layout_constraintTop_toBottomOf="@+id/firstNameValue"
@@ -70,7 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/current_class"
-        android:textSize="16sp"
+        style="@style/AppTheme.TextFontFamily"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/classValue" />
 
@@ -78,8 +78,8 @@
         android:id="@+id/classValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        style="@style/AppTheme.TextFontFamily"
         android:layout_marginTop="8dp"
-        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/classLabel"
         app:layout_constraintStart_toStartOf="@+id/lastNameValue"
         app:layout_constraintTop_toBottomOf="@+id/lastNameValue"

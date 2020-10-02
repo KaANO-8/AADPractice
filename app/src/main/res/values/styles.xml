@@ -24,6 +24,10 @@
         <item name="android:layout_marginStart">16dp</item>
         <item name="android:layout_marginEnd">16dp</item>
         <item name="android:layout_marginTop">16dp</item>
+    </style>
+
+    <style name="AppTheme.TextFontFamily">
+        <item name="android:fontFamily">@font/coming_soon</item>
         <item name="android:textSize">16sp</item>
     </style>
 
