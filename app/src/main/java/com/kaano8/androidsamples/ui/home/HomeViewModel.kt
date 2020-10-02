@@ -12,6 +12,11 @@ class HomeViewModel(private val noteRepository: NoteRepository) : ViewModel() {
 
     private val _clearDatabaseSnackBarEvent = MutableLiveData<Boolean>()
 
+    private val _navigateToAddNote = MutableLiveData<Boolean?>()
+
+    val navigateToAddNote: LiveData<Boolean?>
+        get() = _navigateToAddNote
+
     val clearDatabaseSnackBarEvent: LiveData<Boolean>
         get() = _clearDatabaseSnackBarEvent
 
@@ -36,5 +41,13 @@ class HomeViewModel(private val noteRepository: NoteRepository) : ViewModel() {
      */
     fun doneShowingSnackbar() {
         _clearDatabaseSnackBarEvent.value = false
+    }
+
+    fun onFabClick() {
+        _navigateToAddNote.value = true
+    }
+
+    fun doneNavigationToAddNote() {
+        _navigateToAddNote.value = null
     }
 }

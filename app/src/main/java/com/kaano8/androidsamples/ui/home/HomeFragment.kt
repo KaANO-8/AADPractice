@@ -39,7 +39,7 @@ class HomeFragment : Fragment() {
         setupRecyclerView()
 
         addNNewNote?.setOnClickListener {
-
+            homeViewModel.onFabClick()
         }
 
         homeViewModel.clearDatabaseSnackBarEvent.observe(
@@ -54,6 +54,13 @@ class HomeFragment : Fragment() {
                     homeViewModel.doneShowingSnackbar()
                 }
             })
+
+        homeViewModel.navigateToAddNote.observe(viewLifecycleOwner, {
+           if (it == true) {
+               findNavController().navigate(R.id.nav_add_note)
+               homeViewModel.doneNavigationToAddNote()
+           }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
