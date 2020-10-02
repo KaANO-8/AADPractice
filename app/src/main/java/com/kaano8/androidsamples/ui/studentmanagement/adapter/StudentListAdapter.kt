@@ -1,5 +1,6 @@
 package com.kaano8.androidsamples.ui.studentmanagement.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,7 +28,15 @@ class StudentListAdapter(private val onStudentItemClickListener: OnStudentItemCl
             lastNameText.text = item.lastName
             classText.text = item.currentClass
             editDetailsButton.setOnClickListener { onStudentItemClickListener.onEditDetailsClicked(item.studentId) }
-            viewDetailsButton.setOnClickListener { onStudentItemClickListener.onViewDetailsClicked(item.studentId) }
+            viewDetailsButton.apply {
+                try {
+                    isEnabled = item.currentClass.toLong() == 0L
+                } catch (e: Exception) {
+                    Log.d("ParsingException", e.message.toString())
+                    isEnabled = true
+                }
+                setOnClickListener { onStudentItemClickListener.onViewDetailsClicked(item.studentId) }
+            }
         }
     }
 

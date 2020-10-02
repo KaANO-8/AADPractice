@@ -10,7 +10,7 @@ import com.kaano8.androidsamples.database.student.relation.StudentWithDetails
 
 interface StudentRepository {
 
-    suspend fun addStudent(student: Student)
+    suspend fun addStudent(student: Student): Long
 
     suspend fun updateStudent(student: Student)
 

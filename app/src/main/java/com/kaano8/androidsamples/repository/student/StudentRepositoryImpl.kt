@@ -13,9 +13,7 @@ import com.kaano8.androidsamples.database.student.relation.StudentWithDetails
 
 class StudentRepositoryImpl(private val studentDao: StudentDao, private val jokesService: JokesService): StudentRepository {
 
-    override suspend fun addStudent(student: Student) {
-        studentDao.insertStudent(student)
-    }
+    override suspend fun addStudent(student: Student): Long = studentDao.insertStudent(student)
 
     override suspend fun updateStudent(student: Student) {
         studentDao.updateStudent(student)

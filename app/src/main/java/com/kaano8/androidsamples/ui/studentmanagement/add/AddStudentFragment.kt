@@ -8,9 +8,14 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.workDataOf
 import com.kaano8.androidsamples.R
+import com.kaano8.androidsamples.ui.studentmanagement.unlock.UnlockWorker
 import com.kaano8.androidsamples.util.extensions.Database.getStudentRepository
 import kotlinx.android.synthetic.main.fragment_add_student.*
+import java.util.concurrent.TimeUnit
 
 
 class AddStudentFragment : Fragment() {
@@ -43,6 +48,13 @@ class AddStudentFragment : Fragment() {
                 addStudentViewModel.doneNavigation()
             }
         })
+
+        addStudentViewModel.scheduleWork.observe(viewLifecycleOwner, { data ->
+            data?.let {
+                scheduleWorker(data.first, data.second)
+                addStudentViewModel.doneScheduling()
+            }
+        })
     }
 
     private fun setupViewModel() {
@@ -50,4 +62,21 @@ class AddStudentFragment : Fragment() {
         val viewModelFactory = AddStudentViewModelFactory(getStudentRepository(application))
         addStudentViewModel = ViewModelProvider(this, viewModelFactory).get(AddStudentViewModel::class.java)
     }
+
+    private fun scheduleWorker(studentId: Long, delay: Long) {
+        if (studentId == -1L)
+            return
+
+        val workRequest = OneTimeWorkRequestBuilder<UnlockWorker>()
+            .setInputData(workDataOf(STUDENT_ID_KEY to studentId))
+            .setInitialDelay(delay, TimeUnit.SECONDS)
+            .build()
+
+        WorkManager.getInstance(requireContext()).enqueue(workRequest)
+    }
+
+    companion object {
+        const val STUDENT_ID_KEY = "studentIdKey"
+    }
+
 }
