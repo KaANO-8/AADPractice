@@ -166,6 +166,9 @@
         <argument
             android:name="myarg"
             android:defaultValue="Android!" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="www.example.com/{myarg}" />
 
     </fragment>
 </navigation>
