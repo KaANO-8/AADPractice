@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
+import androidx.preference.PreferenceManager
 import com.kaano8.androidsamples.MainActivity
 import com.kaano8.androidsamples.R
 import com.kaano8.androidsamples.database.AppDatabase
@@ -19,34 +20,44 @@ import kotlinx.coroutines.launch
 class UnlockAlarmReceiver: BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
-        val notificationManager = getNotificationManager(
-            context,
-            UNLOCK_PRIMARY_ID,
-            UNLOCK_CHANNEL_NAME,
-            UNLOCK_CHANNEL_DESCRIPTION
-        )
-        val database = AppDatabase.getInstance(context?.applicationContext!!)
-        val data = intent?.getLongExtra(STUDENT_ID_KEY, -1) ?: -1
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val isNotificationsTurnedOff = sharedPreferences.getBoolean("stopNotifications", false)
 
-        val contentIntent = Intent(context, MainActivity::class.java).apply {
-            putExtra(KEY_LAUNCH_STUDENT_LIST, true)
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP and Intent.FLAG_ACTIVITY_NEW_TASK
-        }
-        val pendingIntent = PendingIntent.getActivity(
-            context,
-            AlarmManagerFragment.NOTIFICATION_ID,
-            contentIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT
-        )
+        if (!isNotificationsTurnedOff) {
+            val notificationManager = getNotificationManager(context, UNLOCK_PRIMARY_ID, UNLOCK_CHANNEL_NAME, UNLOCK_CHANNEL_DESCRIPTION)
+            // get database instance
+            val database = AppDatabase.getInstance(context?.applicationContext!!)
+            // get student key passed in index
+            val data = intent?.getLongExtra(STUDENT_ID_KEY, -1) ?: -1
 
-        GlobalScope.launch {
-            val student = database.studentDao.getStudent(data)
+            val pendingIntent = getNotificationPendingIntent(context, data)
 
-            student?.let {
-                val notification = createNotification(context, it, pendingIntent)
-                notificationManager?.notify(UNLOCK_NOTIFICATION_ID, notification)
+            /**
+             * Not an ideal solution to call database query on broadcast receiver,
+             * but currently I'm aware of this solution only.
+             */
+            GlobalScope.launch {
+                // fetch data from database
+                val student = database.studentDao.getStudent(data)
+
+                student?.let {
+                    val notification = createNotification(context, it, pendingIntent)
+                    notificationManager?.notify(UNLOCK_NOTIFICATION_ID, notification)
+                }
             }
         }
+    }
+
+    private fun getNotificationPendingIntent(context: Context?, studentId: Long): PendingIntent {
+        // Create intent to launch main activity on click of notification
+        val contentIntent = Intent(context, MainActivity::class.java).apply {
+            putExtra(KEY_LAUNCH_STUDENT_LIST, true)
+            putExtra(KEY_STUDENT_ID, studentId)
+            // Flags to clear notifications
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP and Intent.FLAG_ACTIVITY_NEW_TASK
+        }
+        // Create pending intent that should be fired with notification
+        return PendingIntent.getActivity(context, AlarmManagerFragment.NOTIFICATION_ID, contentIntent, PendingIntent.FLAG_UPDATE_CURRENT)
     }
 
     private fun createNotification(
@@ -70,5 +81,6 @@ class UnlockAlarmReceiver: BroadcastReceiver() {
         private const val UNLOCK_CHANNEL_NAME = "Unlock Channel"
         private const val UNLOCK_CHANNEL_DESCRIPTION = "A notification that tells your views are unlocked"
         const val KEY_LAUNCH_STUDENT_LIST = "openStudentList"
+        const val KEY_STUDENT_ID = "selectedStudentKey"
     }
 }
