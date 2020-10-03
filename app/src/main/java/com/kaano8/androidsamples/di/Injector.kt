@@ -1,9 +1,7 @@
-package com.kaano8.androidsamples.util
+package com.kaano8.androidsamples.di
 
 import android.app.NotificationManager
-import android.content.ClipDescription
 import android.content.Context
-import com.kaano8.androidsamples.ui.backgroundservices.alarmmanager.AlarmManagerFragment
 import com.kaano8.androidsamples.util.extensions.createChannel
 
 object Injector {

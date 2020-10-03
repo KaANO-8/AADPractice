@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.kaano8.androidsamples.R
-import com.kaano8.androidsamples.util.extensions.Database
+import com.kaano8.androidsamples.di.Database
 import kotlinx.android.synthetic.main.fragment_view_student_details.*
 
 

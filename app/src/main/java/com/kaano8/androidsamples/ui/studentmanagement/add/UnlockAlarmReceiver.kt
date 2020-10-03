@@ -12,7 +12,7 @@ import com.kaano8.androidsamples.R
 import com.kaano8.androidsamples.database.AppDatabase
 import com.kaano8.androidsamples.database.student.Student
 import com.kaano8.androidsamples.ui.studentmanagement.add.AddStudentFragment.Companion.STUDENT_ID_KEY
-import com.kaano8.androidsamples.util.Injector.getNotificationManager
+import com.kaano8.androidsamples.di.Injector.getNotificationManager
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 

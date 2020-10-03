@@ -12,7 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.kaano8.androidsamples.R
-import com.kaano8.androidsamples.util.Injector.getNotificationManager
+import com.kaano8.androidsamples.di.Injector.getNotificationManager
 import com.kaano8.androidsamples.util.extensions.showToast
 import kotlinx.android.synthetic.main.fragment_alarm_manager.*
 

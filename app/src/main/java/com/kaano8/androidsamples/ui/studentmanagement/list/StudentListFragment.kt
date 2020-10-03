@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.kaano8.androidsamples.R
 import com.kaano8.androidsamples.ui.studentmanagement.adapter.OnStudentItemClickListener
 import com.kaano8.androidsamples.ui.studentmanagement.adapter.StudentListAdapter
-import com.kaano8.androidsamples.util.extensions.Database
+import com.kaano8.androidsamples.di.Database
 import kotlinx.android.synthetic.main.fragment_student_list.*
 
 class StudentListFragment : Fragment() {

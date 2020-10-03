@@ -1,6 +1,5 @@
-package com.kaano8.androidsamples.util.extensions
+package com.kaano8.androidsamples.di
 
-import android.app.Application
 import android.content.Context
 import com.kaano8.androidsamples.api.jokes.JokesService
 import com.kaano8.androidsamples.database.AppDatabase

@@ -11,7 +11,7 @@ import androidx.navigation.fragment.navArgs
 import com.kaano8.androidsamples.R
 import com.kaano8.androidsamples.models.toCourseListItem
 import com.kaano8.androidsamples.ui.studentmanagement.add.details.adpater.CourseListAdapter
-import com.kaano8.androidsamples.util.extensions.Database.getStudentRepository
+import com.kaano8.androidsamples.di.Database.getStudentRepository
 import kotlinx.android.synthetic.main.fragment_add_student_details.*
 
 
