@@ -15,6 +15,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.kaano8.androidsamples.ui.backgroundservices.broadcastreceiver.PowerStatusReceiver
 import com.kaano8.androidsamples.ui.studentmanagement.add.UnlockAlarmReceiver.Companion.KEY_LAUNCH_STUDENT_LIST
+import com.kaano8.androidsamples.ui.studentmanagement.add.UnlockAlarmReceiver.Companion.KEY_STUDENT_ID
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -40,8 +41,28 @@ class MainActivity : AppCompatActivity() {
         }*/
         setupNavDrawer()
 
-        if (intent.getBooleanExtra(KEY_LAUNCH_STUDENT_LIST, false))
-            findNavController(R.id.nav_host_fragment).navigate(R.id.nav_student_list)
+        conditionalNavigateToStudentDetails()
+    }
+
+    private fun conditionalNavigateToStudentDetails() {
+        if (intent.getBooleanExtra(KEY_LAUNCH_STUDENT_LIST, false)) {
+            val studentId = intent.getLongExtra(KEY_STUDENT_ID, -1)
+            val bundle = Bundle().also {
+                it.putLong("selectedStudentId", studentId)
+            }
+            findNavController(R.id.nav_host_fragment).navigate(R.id.nav_view_student_details, bundle)
+        }
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        if (intent?.getBooleanExtra(KEY_LAUNCH_STUDENT_LIST, false) == true) {
+            val studentId = intent.getLongExtra(KEY_STUDENT_ID, -1)
+            val bundle = Bundle().also {
+                it.putLong("selectedStudentId", studentId)
+            }
+            findNavController(R.id.nav_host_fragment).navigate(R.id.nav_view_student_details, bundle)
+        }
     }
 
     private fun setupNavDrawer() {
