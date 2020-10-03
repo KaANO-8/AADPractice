@@ -17,9 +17,10 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.workDataOf
 import com.kaano8.androidsamples.R
-import com.kaano8.androidsamples.ui.studentmanagement.add.UnlockAlarmReceiver.Companion.UNLOCK_NOTIFICATION_ID
-import com.kaano8.androidsamples.ui.studentmanagement.unlock.UnlockWorker
+import com.kaano8.androidsamples.ui.studentmanagement.unlock.alarm.UnlockAlarmReceiver.Companion.UNLOCK_NOTIFICATION_ID
+import com.kaano8.androidsamples.ui.studentmanagement.unlock.worker.UnlockWorker
 import com.kaano8.androidsamples.di.Database.getStudentRepository
+import com.kaano8.androidsamples.ui.studentmanagement.unlock.alarm.UnlockAlarmReceiver
 import kotlinx.android.synthetic.main.fragment_add_student.*
 import java.util.concurrent.TimeUnit
 

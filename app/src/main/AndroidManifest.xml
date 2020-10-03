@@ -17,7 +17,7 @@
             android:exported="false" />
 
         <receiver
-            android:name=".ui.studentmanagement.add.UnlockAlarmReceiver"
+            android:name="com.kaano8.androidsamples.ui.studentmanagement.unlock.alarm.UnlockAlarmReceiver"
             android:enabled="true"
             android:exported="false" />
 

@@ -1,4 +1,4 @@
-package com.kaano8.androidsamples.ui.studentmanagement.add
+package com.kaano8.androidsamples.ui.studentmanagement.unlock.alarm
 
 import android.app.Notification
 import android.app.PendingIntent

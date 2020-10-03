@@ -14,8 +14,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.kaano8.androidsamples.ui.backgroundservices.broadcastreceiver.PowerStatusReceiver
-import com.kaano8.androidsamples.ui.studentmanagement.add.UnlockAlarmReceiver.Companion.KEY_LAUNCH_STUDENT_LIST
-import com.kaano8.androidsamples.ui.studentmanagement.add.UnlockAlarmReceiver.Companion.KEY_STUDENT_ID
+import com.kaano8.androidsamples.ui.studentmanagement.unlock.alarm.UnlockAlarmReceiver.Companion.KEY_LAUNCH_STUDENT_LIST
+import com.kaano8.androidsamples.ui.studentmanagement.unlock.alarm.UnlockAlarmReceiver.Companion.KEY_STUDENT_ID
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {

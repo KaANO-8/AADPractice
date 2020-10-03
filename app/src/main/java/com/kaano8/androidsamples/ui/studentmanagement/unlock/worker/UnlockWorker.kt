@@ -1,4 +1,4 @@
-package com.kaano8.androidsamples.ui.studentmanagement.unlock
+package com.kaano8.androidsamples.ui.studentmanagement.unlock.worker
 
 import android.content.Context
 import androidx.work.CoroutineWorker
