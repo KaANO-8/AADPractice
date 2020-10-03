@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.kaano8.androidsamples.ui.paging
+package com.kaano8.androidsamples.ui.paging3
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -23,7 +23,6 @@ import androidx.paging.cachedIn
 import androidx.paging.insertSeparators
 import androidx.paging.map
 import com.kaano8.androidsamples.repository.paging.GithubRepository
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

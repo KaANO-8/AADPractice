@@ -19,7 +19,7 @@ package com.example.android.codelabs.paging.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.kaano8.androidsamples.repository.paging.GithubRepository
-import com.kaano8.androidsamples.ui.paging.SearchRepositoriesViewModel
+import com.kaano8.androidsamples.ui.paging3.SearchRepositoriesViewModel
 
 /**
  * Factory for ViewModels

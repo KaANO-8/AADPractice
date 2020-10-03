@@ -1,0 +1,8 @@
+class <<Update Factory Name>>(<<Update parameters>>) : ViewModelProvider.Factory {
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(<<Update view model name>>::class.java)) {
+            return <<Add view model instance>> as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
+}

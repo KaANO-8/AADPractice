@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.kaano8.androidsamples.ui.paging.adapter.list
+package com.kaano8.androidsamples.ui.paging3.adapter.list
 
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.kaano8.androidsamples.R
-import com.kaano8.androidsamples.ui.paging.SearchRepositoriesViewModel.UiModel
+import com.kaano8.androidsamples.ui.paging3.SearchRepositoriesViewModel.UiModel
 
 /**
  * Adapter for the list of repositories.

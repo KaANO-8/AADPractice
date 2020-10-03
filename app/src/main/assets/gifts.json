@@ -22,5 +22,245 @@
     "name": "Jabong Gift Voucher",
     "amount": 700,
     "remark": "redeemable at jabong.com"
+  },
+  {
+    "id": "amazon-gift1",
+    "name": "Amazon Gift Voucher",
+    "amount": 1000,
+    "remark": "redeemable at amazon.co.in"
+  },
+  {
+    "id": "flikart-gift1",
+    "name": "Flipkart Gift Voucher",
+    "amount": 500,
+    "remark": "redeemable at flipkart.com"
+  },
+  {
+    "id": "myntra-gift1",
+    "name": "Myntra Gift Voucher",
+    "amount": 800,
+    "remark": "redeemable at myntra.com"
+  },
+  {
+    "id": "jabong-gift1",
+    "name": "Jabong Gift Voucher",
+    "amount": 700,
+    "remark": "redeemable at jabong.com"
+  },
+  {
+    "id": "amazon-gift2",
+    "name": "Amazon Gift Voucher",
+    "amount": 1000,
+    "remark": "redeemable at amazon.co.in"
+  },
+  {
+    "id": "flikart-gift2",
+    "name": "Flipkart Gift Voucher",
+    "amount": 500,
+    "remark": "redeemable at flipkart.com"
+  },
+  {
+    "id": "myntra-gift2",
+    "name": "Myntra Gift Voucher",
+    "amount": 800,
+    "remark": "redeemable at myntra.com"
+  },
+  {
+    "id": "jabong-gift2",
+    "name": "Jabong Gift Voucher",
+    "amount": 700,
+    "remark": "redeemable at jabong.com"
+  },
+  {
+    "id": "amazon-gift3",
+    "name": "Amazon Gift Voucher",
+    "amount": 1000,
+    "remark": "redeemable at amazon.co.in"
+  },
+  {
+    "id": "flikart-gift3",
+    "name": "Flipkart Gift Voucher",
+    "amount": 500,
+    "remark": "redeemable at flipkart.com"
+  },
+  {
+    "id": "myntra-gift3",
+    "name": "Myntra Gift Voucher",
+    "amount": 800,
+    "remark": "redeemable at myntra.com"
+  },
+  {
+    "id": "jabong-gift3",
+    "name": "Jabong Gift Voucher",
+    "amount": 700,
+    "remark": "redeemable at jabong.com"
+  },
+  {
+    "id": "amazon-gift4",
+    "name": "Amazon Gift Voucher",
+    "amount": 1000,
+    "remark": "redeemable at amazon.co.in"
+  },
+  {
+    "id": "flikart-gift4",
+    "name": "Flipkart Gift Voucher",
+    "amount": 500,
+    "remark": "redeemable at flipkart.com"
+  },
+  {
+    "id": "myntra-gift4",
+    "name": "Myntra Gift Voucher",
+    "amount": 800,
+    "remark": "redeemable at myntra.com"
+  },
+  {
+    "id": "jabong-gift4",
+    "name": "Jabong Gift Voucher",
+    "amount": 700,
+    "remark": "redeemable at jabong.com"
+  },
+  {
+    "id": "amazon-gift5",
+    "name": "Amazon Gift Voucher",
+    "amount": 1000,
+    "remark": "redeemable at amazon.co.in"
+  },
+  {
+    "id": "flikart-gift5",
+    "name": "Flipkart Gift Voucher",
+    "amount": 500,
+    "remark": "redeemable at flipkart.com"
+  },
+  {
+    "id": "myntra-gift5",
+    "name": "Myntra Gift Voucher",
+    "amount": 800,
+    "remark": "redeemable at myntra.com"
+  },
+  {
+    "id": "jabong-gift5",
+    "name": "Jabong Gift Voucher",
+    "amount": 700,
+    "remark": "redeemable at jabong.com"
+  },
+  {
+    "id": "amazon-gift6",
+    "name": "Amazon Gift Voucher",
+    "amount": 1000,
+    "remark": "redeemable at amazon.co.in"
+  },
+  {
+    "id": "flikart-gift6",
+    "name": "Flipkart Gift Voucher",
+    "amount": 500,
+    "remark": "redeemable at flipkart.com"
+  },
+  {
+    "id": "myntra-gift6",
+    "name": "Myntra Gift Voucher",
+    "amount": 800,
+    "remark": "redeemable at myntra.com"
+  },
+  {
+    "id": "jabong-gift6",
+    "name": "Jabong Gift Voucher",
+    "amount": 700,
+    "remark": "redeemable at jabong.com"
+  },
+  {
+    "id": "amazon-gift7",
+    "name": "Amazon Gift Voucher",
+    "amount": 1000,
+    "remark": "redeemable at amazon.co.in"
+  },
+  {
+    "id": "flikart-gift7",
+    "name": "Flipkart Gift Voucher",
+    "amount": 500,
+    "remark": "redeemable at flipkart.com"
+  },
+  {
+    "id": "myntra-gift7",
+    "name": "Myntra Gift Voucher",
+    "amount": 800,
+    "remark": "redeemable at myntra.com"
+  },
+  {
+    "id": "jabong-gift7",
+    "name": "Jabong Gift Voucher",
+    "amount": 700,
+    "remark": "redeemable at jabong.com"
+  },
+  {
+    "id": "amazon-gift8",
+    "name": "Amazon Gift Voucher",
+    "amount": 1000,
+    "remark": "redeemable at amazon.co.in"
+  },
+  {
+    "id": "flikart-gift8",
+    "name": "Flipkart Gift Voucher",
+    "amount": 500,
+    "remark": "redeemable at flipkart.com"
+  },
+  {
+    "id": "myntra-gift8",
+    "name": "Myntra Gift Voucher",
+    "amount": 800,
+    "remark": "redeemable at myntra.com"
+  },
+  {
+    "id": "jabong-gift8",
+    "name": "Jabong Gift Voucher",
+    "amount": 700,
+    "remark": "redeemable at jabong.com"
+  },
+  {
+    "id": "amazon-gift9",
+    "name": "Amazon Gift Voucher",
+    "amount": 1000,
+    "remark": "redeemable at amazon.co.in"
+  },
+  {
+    "id": "flikart-gift9",
+    "name": "Flipkart Gift Voucher",
+    "amount": 500,
+    "remark": "redeemable at flipkart.com"
+  },
+  {
+    "id": "myntra-gift9",
+    "name": "Myntra Gift Voucher",
+    "amount": 800,
+    "remark": "redeemable at myntra.com"
+  },
+  {
+    "id": "jabong-gift9",
+    "name": "Jabong Gift Voucher",
+    "amount": 700,
+    "remark": "redeemable at jabong.com"
+  },
+  {
+    "id": "amazon-gift10",
+    "name": "Amazon Gift Voucher",
+    "amount": 1000,
+    "remark": "redeemable at amazon.co.in"
+  },
+  {
+    "id": "flikart-gift10",
+    "name": "Flipkart Gift Voucher",
+    "amount": 500,
+    "remark": "redeemable at flipkart.com"
+  },
+  {
+    "id": "myntra-gift10",
+    "name": "Myntra Gift Voucher",
+    "amount": 800,
+    "remark": "redeemable at myntra.com"
+  },
+  {
+    "id": "jabong-gift10",
+    "name": "Jabong Gift Voucher",
+    "amount": 700,
+    "remark": "redeemable at jabong.com"
   }
 ]

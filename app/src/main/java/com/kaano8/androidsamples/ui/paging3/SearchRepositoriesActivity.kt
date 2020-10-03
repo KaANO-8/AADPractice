@@ -14,11 +14,10 @@
  * limitations under the License.
  */
 
-package com.kaano8.androidsamples.ui.paging
+package com.kaano8.androidsamples.ui.paging3
 
 import android.os.Bundle
 import android.view.KeyEvent
-import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -28,8 +27,8 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.kaano8.androidsamples.databinding.ActivitySearchRepositoriesBinding
 import com.kaano8.androidsamples.di.Injection
-import com.kaano8.androidsamples.ui.paging.adapter.list.ReposAdapter
-import com.kaano8.androidsamples.ui.paging.adapter.state.ReposLoadStateAdapter
+import com.kaano8.androidsamples.ui.paging3.adapter.list.ReposAdapter
+import com.kaano8.androidsamples.ui.paging3.adapter.state.ReposLoadStateAdapter
 import com.kaano8.androidsamples.util.extensions.showToast
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job

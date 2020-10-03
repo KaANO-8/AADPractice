@@ -1,9 +1,8 @@
-package com.kaano8.androidsamples.ui.paging.adapter.state
+package com.kaano8.androidsamples.ui.paging3.adapter.state
 
 import android.view.ViewGroup
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
-import androidx.recyclerview.widget.RecyclerView
 
 class ReposLoadStateAdapter(private val retry: () -> Unit): LoadStateAdapter<ReposLoadStateViewHolder>() {
     override fun onBindViewHolder(holder: ReposLoadStateViewHolder, loadState: LoadState) {

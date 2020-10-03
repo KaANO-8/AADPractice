@@ -1,4 +1,4 @@
-package com.kaano8.androidsamples.ui.paging.adapter.state
+package com.kaano8.androidsamples.ui.paging3.adapter.state
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

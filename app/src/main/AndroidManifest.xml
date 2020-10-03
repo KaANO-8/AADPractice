@@ -41,7 +41,7 @@
             </intent-filter>
             <nav-graph android:value="@navigation/mobile_navigation" />
         </activity>
-        <activity android:name=".ui.paging.SearchRepositoriesActivity" />
+        <activity android:name=".ui.paging3.SearchRepositoriesActivity" />
 
         <!-- If you are initializing workManager yourself in application class, then add the below
         code to avoid it init by itself, otherwise it will hit an exception. -->
