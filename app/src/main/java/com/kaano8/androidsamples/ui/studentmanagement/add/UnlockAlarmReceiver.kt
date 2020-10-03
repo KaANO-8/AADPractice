@@ -11,7 +11,6 @@ import com.kaano8.androidsamples.MainActivity
 import com.kaano8.androidsamples.R
 import com.kaano8.androidsamples.database.AppDatabase
 import com.kaano8.androidsamples.database.student.Student
-import com.kaano8.androidsamples.ui.backgroundservices.alarmmanager.AlarmManagerFragment
 import com.kaano8.androidsamples.ui.studentmanagement.add.AddStudentFragment.Companion.STUDENT_ID_KEY
 import com.kaano8.androidsamples.util.Injector.getNotificationManager
 import kotlinx.coroutines.GlobalScope
@@ -57,7 +56,7 @@ class UnlockAlarmReceiver: BroadcastReceiver() {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TOP and Intent.FLAG_ACTIVITY_NEW_TASK
         }
         // Create pending intent that should be fired with notification
-        return PendingIntent.getActivity(context, AlarmManagerFragment.NOTIFICATION_ID, contentIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        return PendingIntent.getActivity(context, UNLOCK_NOTIFICATION_ID, contentIntent, PendingIntent.FLAG_UPDATE_CURRENT)
     }
 
     private fun createNotification(
@@ -65,7 +64,7 @@ class UnlockAlarmReceiver: BroadcastReceiver() {
         student: Student,
         pendingIntent: PendingIntent
     ): Notification {
-        return NotificationCompat.Builder(context!!, AlarmManagerFragment.PRIMARY_CHANNEL_ID)
+        return NotificationCompat.Builder(context!!, UNLOCK_PRIMARY_ID)
             .setSmallIcon(R.drawable.ic_stand_up).setContentTitle("Unlock alert!")
             .setContentText("${student.firstName} ${student.lastName} is unlocked!")
             .setContentIntent(pendingIntent)
